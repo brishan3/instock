@@ -3,10 +3,6 @@ import EditInven from "./components/EditInven/EditInven";
 import AddInven from "./components/AddInven/AddInven";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Header from "./components/Header/Header";
-import Inventory from "./pages/Inventory/Inventory";
-import Warehouses from "./pages/Warehouses/Warehouses";
-import Footer from "./components/Footer/Footer";
 function App() {
   return (
     <BrowserRouter>
