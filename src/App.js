@@ -12,17 +12,17 @@ function App() {
       <div className="App">
         <Header />
         <article className="page-container">
-          {/* <div className="page-container__inner"> */}
-          <Switch>
-            <Route path="/" component={Warehouses} exact />
-            <Route path="/warehouses" component={Warehouses} />
-            <Route path="/warehouses/:id" component={Warehouses} />
-            <Route path="/inventory" component={EditInven} />
-            <Route path="/inventory/:id" component={Inventory} />
-          </Switch>
-          {/* </div> */}
+          <div className="page-container__inner">
+            <Switch>
+              <Route path="/" component={Warehouses} exact />
+              <Route path="/warehouses" component={Warehouses} />
+              <Route path="/warehouses/:id" component={Warehouses} />
+              <Route path="/inventory" component={EditInven} />
+              <Route path="/inventory/:id" component={Inventory} />
+            </Switch>
+          </div>
+          <Footer />
         </article>
-        <Footer />
       </div>
     </BrowserRouter>
   );

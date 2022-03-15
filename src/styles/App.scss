@@ -15,12 +15,11 @@
     padding: 0 2rem;
     top: 5.25rem;
   }
-  @include desktop {
-    padding: 0 8rem;
-  }
   &__inner {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    max-width: 63.75rem;
     background: $global-color;
-    padding: 1rem;
     overflow: hidden;
+    margin: 0 auto;
   }
 }
