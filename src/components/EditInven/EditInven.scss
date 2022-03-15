@@ -1,0 +1,141 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.box-shadow {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.back-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.75rem;
+}
+
+.edit-inven__subheader {
+  @include flexed(row, flex-start, baseline);
+  background-color: white;
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid $outline-divider-color;
+}
+
+.subheader__text {
+  font-size: 1.75rem;
+}
+
+.edit-inven__details {
+  @include flexed(column, center, flex-start);
+}
+
+.details__container {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid $outline-divider-color;
+}
+
+.detail__subheader {
+  font-size: 1.25rem;
+  padding-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.details__form {
+  @include flexed(column, center, flex-start);
+  line-height: 1.25rem;
+}
+
+.details__label {
+  font-size: 0.813rem;
+  font-weight: 600;
+  padding-bottom: 0.25rem;
+}
+
+.details__input {
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid $outline-divider-color;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details__textarea {
+  height: 7.5rem;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid $outline-divider-color;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  &::placeholder {
+    font-family: "Titillium Web";
+    font-size: 0.813rem;
+  }
+  margin-bottom: 1rem;
+}
+
+.details__select {
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid $outline-divider-color;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  padding-right: 1rem;
+  background: transparent;
+  appearance: none;
+}
+
+.availability__container {
+  width: 100%;
+  padding: 1rem 1.5rem;
+}
+
+.stock__status {
+  @include flexed(row, flex-start, center);
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.radio-btn {
+  width: 50%;
+  margin-left: 0.25rem;
+  font-size: 0.813rem;
+}
+
+.warehouse__select {
+  height: 2.25rem;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid $outline-divider-color;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.buttons {
+  @include flexed(row, space-between, center);
+  padding: 1rem 1.5rem;
+}
+
+.cancel-btn {
+  width: 45%;
+  text-align: center;
+  border: 1px solid $outline-divider-color;
+  border-radius: 20px;
+  padding: 0.5rem;
+}
+
+.save-btn {
+  width: 45%;
+  text-align: center;
+  background-color: $interactive-color;
+  border: 1px solid $interactive-color;
+  color: $global-color;
+  border-radius: 20px;
+  padding: 0.5rem;
+}
+
+.select-container {
+  width: 100%;
+  overflow: hidden;
+  background: url("../../assets/icons/arrow_drop_down-24px.svg") no-repeat right
+    7px #fff;
+}

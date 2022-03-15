@@ -1,1 +1,14 @@
 @use "./partials/global" as *;
+
+.App {
+  position: relative;
+}
+
+.container {
+  padding: 1rem;
+  position: absolute;
+  left: 0rem;
+  top: 8.5rem;
+  width: 100%;
+  font-family: "Titillium Web";
+}
