@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HeaderNav from './components/HeaderNav/HeaderNav';
 import Inventory from './pages/Inventory/Inventory';
 import Warehouses from './pages/Warehouses/Warehouses';
+import Footer from './components/Footer/Footer';
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/inventory" component={Inventory} />
             <Route path="/inventory/:id" component={Inventory} />            
           </Switch>
+          <Footer />
         </div>
       </BrowserRouter>
     );
