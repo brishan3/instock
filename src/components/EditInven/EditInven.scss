@@ -2,16 +2,7 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/fonts" as *;
 
-.container {
-  padding: 1rem;
-  position: absolute;
-  left: 0rem;
-  top: 8.5rem;
-  width: 100%;
-  font-family: "Titillium Web";
-}
-
-.container1 {
+.box-shadow {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 .back-icon {
@@ -89,6 +80,8 @@
   padding-left: 1rem;
   margin-bottom: 1rem;
   padding-right: 1rem;
+  background: transparent;
+  appearance: none;
 }
 
 .availability__container {
@@ -138,4 +131,11 @@
   color: $global-color;
   border-radius: 20px;
   padding: 0.5rem;
+}
+
+.select-container {
+  width: 100%;
+  overflow: hidden;
+  background: url("../../assets/icons/arrow_drop_down-24px.svg") no-repeat right
+    7px #fff;
 }
