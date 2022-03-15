@@ -1,0 +1,32 @@
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.search {
+  padding-bottom: 1rem;
+
+  &__text {
+    border: 1px solid $outline-divider-color;
+    background-color: $global-color;
+    width: 100%;
+    height: 2.25rem;
+    border-radius: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+
+  &__input {
+    border-style: none;
+    width: 75%;
+
+    &::-webkit-input-placeholder {
+      color: $global-text-color;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

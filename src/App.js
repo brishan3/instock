@@ -1,9 +1,11 @@
-import './styles/App.scss';
+import SearchHeader from "./components/SearchHeader/SearchHeader";
+
+import "./styles/App.scss";
 
 function App() {
   return (
     <div className="App">
-      // Write code here
+      <SearchHeader />
     </div>
   );
 }
