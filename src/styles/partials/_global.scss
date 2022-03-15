@@ -1,7 +1,7 @@
 @use "./colors" as *;
-@use "./fonts" as *;
 @use "./mixins" as *;
 @use "./variables" as *;
+@use "./typography" as *;
 
 * {
   box-sizing: border-box;

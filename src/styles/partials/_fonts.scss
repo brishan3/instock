@@ -1,7 +1,3 @@
-@use "./colors" as *;
-@use "./mixins" as *;
-@use "./typography" as *;
-@use "./variables" as *;
 
 $font: "Titillium Web", Arial, sans-serif;
 $regular: 400;
@@ -85,7 +81,7 @@ $extra-light: 200;
 
 @font-face {
   font-family: "Titillium Web";
-  src: url("TitilliumWeb-SemiBoldItalic.ttf") format("truetype");
+  src: url("../../assets/fonts/TitilliumWeb-SemiBoldItalic.ttf") format("truetype");
   font-weight: $semi-bold;
   font-style: italic;
   font-display: swap;
