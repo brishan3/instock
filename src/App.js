@@ -2,7 +2,7 @@ import './styles/App.scss';
 import { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import HeaderNav from './components/HeaderNav/HeaderNav';
+import Header from './components/Header/Header';
 import Inventory from './pages/Inventory/Inventory';
 import Warehouses from './pages/Warehouses/Warehouses';
 import Footer from './components/Footer/Footer';
@@ -12,7 +12,7 @@ class App extends Component {
     return(
       <BrowserRouter>
         <div className="App">
-          <HeaderNav />
+          <Header />
           <Switch>
             <Route path="/" component={Warehouses} exact />
             <Route path="/warehouses" component={Warehouses} />
