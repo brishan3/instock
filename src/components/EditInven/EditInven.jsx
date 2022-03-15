@@ -10,10 +10,10 @@ class EditInven extends React.Component {
           <img src={backArrow} alt="back arrow" className="back-icon" />
           <h2 className="subheader__text">Edit Inventory Item</h2>
         </div>
-        <section className="edit-inven__details">
+        <form className="edit-inven__details">
           <div className="details__container">
             <h3 className="detail__subheader">Item Details</h3>
-            <form className="details__form">
+            <div className="details__form">
               <label htmlFor="name" className="details__label">
                 Item Name
               </label>
@@ -48,11 +48,11 @@ class EditInven extends React.Component {
                   <option value="Health">Health</option>
                 </select>
               </div>
-            </form>
+            </div>
           </div>
           <div className="availability__container">
             <h3 className="detail__subheader">Item Availability</h3>
-            <form className="details__form">
+            <div className="details__form">
               <label htmlFor="status" className="details__label">
                 Status
               </label>
@@ -97,9 +97,9 @@ class EditInven extends React.Component {
                   <option value="Boston">Boston</option>
                 </select>
               </div>
-            </form>
+            </div>
           </div>
-        </section>
+        </form>
         <div className="buttons">
           <Link to="/inventory" className="cancel-btn">
             Cancel
