@@ -1,14 +1,19 @@
 @use "./partials/global" as *;
+@use "./partials/colors" as *;
 
 .App {
   position: relative;
 }
 
-.container {
+.page-container {
   padding: 1rem;
   position: absolute;
   left: 0rem;
   top: 8.5rem;
   width: 100%;
-  font-family: "Titillium Web";
+  &__inner {
+    background: $global-color;
+    padding: 1rem;
+    overflow: hidden;
+  }
 }
