@@ -16,7 +16,7 @@ class Warehouses extends Component {
     }
 
     getWarehousesData(){
-        axios.get(`/warehouses`)
+        axios.get(`${process.env.REACT_APP_API_URL}`)
         .then((response) => {
             this.setState({
                 warehouses:response.data,

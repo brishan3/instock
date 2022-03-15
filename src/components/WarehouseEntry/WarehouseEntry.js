@@ -10,24 +10,24 @@ function WarehouseEntry(props) {
         <div>
           <div>
             <p>Warehouse</p>
-            <Link to="/warehouses/:id">{props.this.state.warehouses.name}</Link>
+            <Link to="/warehouses/:id">{props.name}</Link>
           </div>
           <div>
             <p>Address</p>
             <p>
-              {props.this.state.warehouses.address}, {props.this.state.warehouses.city},
-              {props.this.state.warehouses.country}
+              {props.address}, {props.city},
+              {props.country}
             </p>
           </div>
           <img className="delete-icon" src={deleteIcon} alt="delete-icon"/>
           <div>
             <p>Contact Name</p>
-            <p>{props.this.state.warehouses.contact.name}</p>
+            <p>{props.name}</p>
           </div>
           <div>
             <p>Contact Infomration</p>
-            <p>{props.this.state.warehouses.contact.phone}</p>
-            <p>{props.this.state.warehouses.contact.email}</p>
+            <p>{props.phone}</p>
+            <p>{props.email}</p>
           </div>
           <img className="edit-icon" src={editIcon} alt="edit-icon" />
         </div>

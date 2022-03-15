@@ -20,6 +20,7 @@ function App() {
             <Route path="/inventory/:id" component={Inventory} />
           </Switch>
         </article>
+        <Footer />
       </div>
     </BrowserRouter>
   );
