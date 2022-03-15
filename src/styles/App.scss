@@ -1,6 +1,6 @@
 @use "./partials/global" as *;
 @use "./partials/colors" as *;
-
+@use "./partials/mixins" as *;
 .App {
   position: relative;
 }
@@ -11,6 +11,13 @@
   left: 0rem;
   top: 8.5rem;
   width: 100%;
+  @include tablet {
+    padding: 0 2rem;
+    top: 5.25rem;
+  }
+  @include desktop {
+    padding: 0 8rem;
+  }
   &__inner {
     background: $global-color;
     padding: 1rem;

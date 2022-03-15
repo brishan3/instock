@@ -81,20 +81,22 @@ class EditInven extends React.Component {
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
               </label>
-              <select
-                name="warehouse"
-                id="warehouse"
-                className="warehouse__select"
-              >
-                <option value="Manhattan">Manhattan</option>
-                <option value="Washington">Washington</option>
-                <option value="Jersey">Jersey</option>
-                <option value="San Fran">San Fran</option>
-                <option value="Santa Monica">Santa Monica</option>
-                <option value="Seattle">Seattle</option>
-                <option value="Miami">Miama</option>
-                <option value="Boston">Boston</option>
-              </select>
+              <div className="select-container">
+                <select
+                  name="warehouse"
+                  id="warehouse"
+                  className="warehouse__select"
+                >
+                  <option value="Manhattan">Manhattan</option>
+                  <option value="Washington">Washington</option>
+                  <option value="Jersey">Jersey</option>
+                  <option value="San Fran">San Fran</option>
+                  <option value="Santa Monica">Santa Monica</option>
+                  <option value="Seattle">Seattle</option>
+                  <option value="Miami">Miama</option>
+                  <option value="Boston">Boston</option>
+                </select>
+              </div>
             </form>
           </div>
         </section>
