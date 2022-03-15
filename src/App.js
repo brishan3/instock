@@ -1,6 +1,10 @@
 import "./styles/App.scss";
+import Inventory from "./pages/Inventory/Inventory";
+import Warehouses from "./pages/Warehouses/Warehouses";
 import EditInven from "./components/EditInven/EditInven";
 import AddInven from "./components/AddInven/AddInven";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
