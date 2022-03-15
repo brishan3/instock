@@ -1,5 +1,6 @@
 import "./styles/App.scss";
 import EditInven from "./components/EditInven/EditInven";
+import AddInven from "./components/AddInven/AddInven";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header/Header";
@@ -17,7 +18,8 @@ function App() {
               <Route path="/" component={Warehouses} exact />
               <Route path="/warehouses" component={Warehouses} />
               <Route path="/warehouses/:id" component={Warehouses} />
-              <Route path="/inventory" component={EditInven} />
+              <Route path="/inventory" exact component={EditInven} />
+              <Route path="/inventory/add" component={AddInven} />
               <Route path="/inventory/:id" component={Inventory} />
             </Switch>
           </div>

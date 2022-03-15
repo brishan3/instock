@@ -1,16 +1,16 @@
-import "./EditInven.scss";
+import "./AddInven.scss";
 import React from "react";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
-class EditInven extends React.Component {
+class AddInven extends React.Component {
   render() {
     return (
       <div className="box-shadow">
-        <div className="edit-inven__subheader">
+        <div className="add-inven__subheader">
           <img src={backArrow} alt="back arrow" className="back-icon" />
-          <h2 className="subheader__text">Edit Inventory Item</h2>
+          <h2 className="subheader__text">Add New Inventory Item</h2>
         </div>
-        <section className="edit-inven__details">
+        <section className="add-inven__details">
           <div className="details__container">
             <h3 className="detail__subheader">Item Details</h3>
             <form className="details__form">
@@ -78,6 +78,15 @@ class EditInven extends React.Component {
                   Out of stock
                 </label>
               </div>
+              <label htmlFor="name" className="details__label">
+                Quantity
+              </label>
+              <input
+                type="text"
+                className="details__input details__input--quantity"
+                placeholder="0"
+                id="name"
+              />
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
               </label>
@@ -113,4 +122,4 @@ class EditInven extends React.Component {
   }
 }
 
-export default EditInven;
+export default AddInven;
