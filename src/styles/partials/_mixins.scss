@@ -1,0 +1,24 @@
+@use "./colors" as *;
+@use "./fonts" as *;
+@use "./typography" as *;
+@use "./variables" as *;
+
+//Break-points
+@mixin tablet {
+  @media screen and (min-width: $tablet-breakpoint) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-breakpoint) {
+    @content;
+  }
+}
+
+@mixin flexed($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

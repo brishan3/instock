@@ -1,0 +1,7 @@
+@use "./colors" as *;
+@use "./fonts" as *;
+@use "./mixins" as *;
+
+//Media Query Breakpoints:
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
