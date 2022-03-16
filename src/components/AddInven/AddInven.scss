@@ -55,6 +55,9 @@
   font-size: 0.813rem;
   font-weight: 600;
   padding-bottom: 0.25rem;
+  &--none {
+    display: none;
+  }
 }
 
 .details__input {
@@ -68,6 +71,9 @@
     @include desktop {
       width: 20%;
     }
+  }
+  &--none {
+    display: none;
   }
 }
 
