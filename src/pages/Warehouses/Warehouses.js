@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
 import './Warehouses.scss';
-import WarehouseEntry from '../../components/WarehouseEntry/WarehouseEntry';
+
 import SearchField from '../../components/SearchField/SearchField';
 import MainButton from '../../components/MainButton/MainButton';
 import WarehousesTable from '../../components/WarehousesTable/WarehousesTable';
@@ -41,7 +41,7 @@ class Warehouses extends Component {
                     </MainButton>                
                 </div>
                 <WarehousesTable 
-                
+                    warehouses={this.state.warehouses}
                 />
                    
             </div>

@@ -1,11 +1,12 @@
 import './WarehousesTable.scss';
 import WarehouseEntry from '../WarehouseEntry/WarehouseEntry';
 
-function WarehousesTable() {
+function WarehousesTable(props) {
     return (
         <div className="warehouses__table">
-        <WarehouseEntry />
-        <WarehouseEntry />
+        <WarehouseEntry warehouses={props.warehouses} />
+        
+        
         </div>
     );
 }
