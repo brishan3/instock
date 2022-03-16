@@ -60,7 +60,7 @@ const handleSubmit = (e) => {
     };
 
     const addWarehouse = axios.post(
-      "http://localhost:8080/warehouses",
+      `${process.env.REACT_APP_API_URL}/warehouses`,
       newWarehouse
     );
     addWarehouse
@@ -201,7 +201,9 @@ export default function EditWarehouse() {
         </div>
       </form>
       <div className="buttons">
-        <Link to="/"><button className="cancel-btn">Cancel</button></Link>
+      <Link to="/warehouses" className="cancel-btn">
+            Cancel
+          </Link>
         <button type="submit" form="warehouse-form" className="save-btn">
           +Add Warehouse
         </button>
