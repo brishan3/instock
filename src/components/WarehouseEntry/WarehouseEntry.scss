@@ -1,0 +1,74 @@
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles//partials/typography" as *;
+
+.warehouseTable{
+    border-top:3px solid red; 
+    display:flex;
+    justify-content: flex-start;
+    align-items:flex-start;
+    gap:3.5rem;
+    padding:1rem 1.5rem;
+    &__location{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    &__contact{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+.delete-icon{
+    min-width:14px;
+    min-height:18px;
+}
+.edit-icon{
+    align-self:flex-end;
+    min-width:18px;
+    min-height:18px;
+}
+///
+
+.warehouses {
+    padding: 0 1.5rem;
+  
+    &__list {
+      border-top: 1px solid $outline-divider-color;
+    }
+  
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &__content {
+      flex: 1;
+    }
+  
+    &__header {
+      padding-top: 1rem;
+      padding-bottom: 0.25rem;
+      color: $table-placeholders-color;
+      text-transform: uppercase;
+    }
+  
+    
+    &__buttons {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    &__button {
+      border-style: none;
+      background-color: $global-color;
+    }
+  }
