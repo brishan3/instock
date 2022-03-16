@@ -8,17 +8,17 @@ class AddInven extends React.Component {
   state = {
     isSubmitted: false,
     error: false,
+    status: false,
+  };
+
+  onChangeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(e.target.itemname.value);
-    console.log(e.target.description.value);
-    console.log(e.target.category.value);
-    console.log(e.target.quantity.value);
-    console.log(e.target.status.value);
-    console.log(e.target.warehouse.value);
-
     //Validation
     if (
       e.target.itemname.value === "" ||
@@ -32,9 +32,10 @@ class AddInven extends React.Component {
     }
     // Validated
     else {
+      console.log(this.state.status);
       // Grab the warehouseID for later use
       axios
-        .get("http://localhost:8080/warehouse")
+        .get("http://localhost:8080/warehouses")
         .then((response) => {
           let foundWarehouse = response.data.find(
             (warehouse) => warehouse.name === e.target.warehouse.value
@@ -130,6 +131,7 @@ class AddInven extends React.Component {
                   name="status"
                   value="instock"
                   defaultChecked
+                  onChange={this.onChangeHandler}
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -139,17 +141,29 @@ class AddInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="outofstock"
+                  onChange={this.onChangeHandler}
                 />
                 <label htmlFor="outofstock" className="radio-btn">
                   Out of stock
                 </label>
               </div>
-              <label htmlFor="name" className="details__label">
+              <label
+                htmlFor="name"
+                className={`details__label ${
+                  this.state.status === "outofstock"
+                    ? "details__label--none"
+                    : ""
+                }`}
+              >
                 Quantity
               </label>
               <input
                 type="text"
-                className="details__input details__input--quantity"
+                className={`details__input details__input--quantity ${
+                  this.state.status === "outofstock"
+                    ? "details__input--none"
+                    : ""
+                }`}
                 placeholder="0"
                 id="name"
                 name="quantity"
@@ -181,11 +195,9 @@ class AddInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
-          {/* <Link to="/inventory/add" className="save-btn"> */}
           <button type="submit" form="form" className="add-btn save-btn">
             Save
           </button>
-          {/* </Link> */}
         </div>
       </div>
     );
