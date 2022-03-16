@@ -1,12 +1,14 @@
 import "./styles/App.scss";
-import EditInven from "./components/EditInven/EditInven";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-import Header from "./components/Header/Header";
 import Inventory from "./pages/Inventory/Inventory";
 import Warehouses from "./pages/Warehouses/Warehouses";
+import EditInven from "./components/EditInven/EditInven";
+import AddInven from "./components/AddInven/AddInven";
+import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx'
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,10 +18,10 @@ function App() {
           <div className="page-container__inner">
             <Switch>
               <Route path="/" component={Warehouses} exact />
-              <Route path="/warehouses" component={Warehouses} />
-              <Route path='/add' component={AddWarehouse} exact/>
-              <Route path="/warehouses/:id" component={Warehouses} />
-              <Route path="/inventory" component={EditInven} />
+              <Route path="/warehouses" exact component={Warehouses} />
+              <Route path="/warehouses/:id" component={WarehouseDetails} />
+              <Route path="/inventory" exact component={Inventory} />
+              <Route path="/inventory/add" component={AddInven} />
               <Route path="/inventory/:id" component={Inventory} />
             </Switch>
           </div>

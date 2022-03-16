@@ -1,0 +1,68 @@
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.items {
+  padding: 0 1.5rem;
+
+  &__list {
+    border-top: 1px solid $outline-divider-color;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__header {
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+    color: $table-placeholders-color;
+    text-transform: uppercase;
+  }
+
+  &__tag {
+    height: 24px;
+    width: 86px;
+    border-radius: 20px;
+  }
+
+  &__status {
+    height: 24px;
+    width: 86px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 0.6875rem;
+    line-height: 1rem;
+    text-align: center;
+    padding: 4px 8px 4px 8px;
+    // padding-top: 0.1875rem;
+  }
+
+  &__green {
+    color: $label-color;
+    background-color: rgb(21 132 99 / 7%);
+  }
+
+  &__red {
+    color: $delete-color;
+    background-color: rgb(201 69 21 / 7%);
+  }
+
+  &__buttons {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    border-style: none;
+    cursor: pointer;
+    background-color: $global-color;
+  }
+}

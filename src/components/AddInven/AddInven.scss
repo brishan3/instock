@@ -11,7 +11,7 @@
   margin-right: 0.75rem;
 }
 
-.edit-inven__subheader {
+.add-inven__subheader {
   @include flexed(row, flex-start, baseline);
   background-color: white;
   padding: 1.5rem 1.5rem;
@@ -22,7 +22,7 @@
   font-size: 1.75rem;
 }
 
-.edit-inven__details {
+.add-inven__details {
   @include flexed(column, center, flex-start);
   @include tablet {
     @include flexed(row, space-between, flex-start);
@@ -64,6 +64,11 @@
   border: 1px solid $outline-divider-color;
   padding-left: 1rem;
   margin-bottom: 1rem;
+  &--quantity {
+    @include desktop {
+      width: 20%;
+    }
+  }
 }
 
 .details__textarea {
@@ -101,6 +106,12 @@
   @include flexed(row, flex-start, center);
   width: 100%;
   margin-bottom: 1rem;
+  @include tablet {
+    width: 60%;
+  }
+  @include desktop {
+    width: 40%;
+  }
 }
 
 .radio-btn {
@@ -132,7 +143,6 @@
 
 .cancel-btn {
   width: 45%;
-  min-width: 4.5rem;
   text-align: center;
   border: 1px solid $outline-divider-color;
   border-radius: 20px;
@@ -168,4 +178,11 @@
   overflow: hidden;
   background: url("../../assets/icons/arrow_drop_down-24px.svg") no-repeat right
     7px #fff;
+}
+
+.add-btn {
+  border: none;
+  background-color: $interactive-color;
+  border: 1px solid $interactive-color;
+  color: $global-color;
 }

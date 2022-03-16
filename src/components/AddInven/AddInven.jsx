@@ -1,17 +1,77 @@
-import "./EditInven.scss";
+import "./AddInven.scss";
 import React from "react";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
-class EditInven extends React.Component {
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+class AddInven extends React.Component {
+  state = {
+    isSubmitted: false,
+    error: false,
+  };
+
+  submitHandler = (e) => {
+    e.preventDefault();
+    console.log(e.target.itemname.value);
+    console.log(e.target.description.value);
+    console.log(e.target.category.value);
+    console.log(e.target.quantity.value);
+    console.log(e.target.status.value);
+    console.log(e.target.warehouse.value);
+
+    //Validation
+    if (
+      e.target.itemname.value === "" ||
+      e.target.description.value === "" ||
+      e.target.category.value === "Select" ||
+      e.target.quantity.value === "0" ||
+      e.target.warehouse.value === "Select"
+    ) {
+      this.setState({ error: true });
+      console.log(this.state.error);
+    }
+    // Validated
+    else {
+      // Grab the warehouseID for later use
+      axios
+        .get("http://localhost:8080/warehouse")
+        .then((response) => {
+          let foundWarehouse = response.data.find(
+            (warehouse) => warehouse.name === e.target.warehouse.value
+          );
+          // Creating new object from the form
+          let newInventory = {
+            id: uuidv4(),
+            warehouseID: foundWarehouse.id,
+            warehouseName: e.target.warehouse.value,
+            itemName: e.target.itemname.value,
+            description: e.target.description.value,
+            category: e.target.category.value,
+            status: e.target.status.value,
+            quantity: e.target.quantity.value,
+          };
+          // Post the object to the server
+          axios
+            .post("http://localhost:8080/inventory", newInventory)
+            .then((response) => {
+              this.setState({ isSubmitted: true });
+              e.target.reset();
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   render() {
     return (
       <div className="box-shadow">
-        <div className="edit-inven__subheader">
+        <div className="add-inven__subheader">
           <img src={backArrow} alt="back arrow" className="back-icon" />
-          <h2 className="subheader__text">Edit Inventory Item</h2>
+          <h2 className="subheader__text">Add New Inventory Item</h2>
         </div>
         <form
-          className="edit-inven__details"
+          className="add-inven__details"
           id="form"
           onSubmit={this.submitHandler}
         >
@@ -26,7 +86,7 @@ class EditInven extends React.Component {
                 className="details__input"
                 placeholder="Item Name"
                 id="name"
-                name="name"
+                name="itemname"
               />
               <label htmlFor="description" className="details__label">
                 Description
@@ -69,7 +129,7 @@ class EditInven extends React.Component {
                   id="instock"
                   name="status"
                   value="instock"
-                  dafaultChecked
+                  defaultChecked
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -84,6 +144,16 @@ class EditInven extends React.Component {
                   Out of stock
                 </label>
               </div>
+              <label htmlFor="name" className="details__label">
+                Quantity
+              </label>
+              <input
+                type="text"
+                className="details__input details__input--quantity"
+                placeholder="0"
+                id="name"
+                name="quantity"
+              />
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
               </label>
@@ -111,13 +181,15 @@ class EditInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
+          {/* <Link to="/inventory/add" className="save-btn"> */}
           <button type="submit" form="form" className="add-btn save-btn">
             Save
           </button>
+          {/* </Link> */}
         </div>
       </div>
     );
   }
 }
 
-export default EditInven;
+export default AddInven;
