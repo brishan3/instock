@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Inventory from "./pages/Inventory/Inventory";
 import Warehouses from "./pages/Warehouses/Warehouses";
 import Footer from "./components/Footer/Footer";
+import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx'
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ function App() {
             <Switch>
               <Route path="/" component={Warehouses} exact />
               <Route path="/warehouses" component={Warehouses} />
+              <Route path='/add' component={AddWarehouse} exact/>
               <Route path="/warehouses/:id" component={Warehouses} />
               <Route path="/inventory" component={EditInven} />
               <Route path="/inventory/:id" component={Inventory} />
