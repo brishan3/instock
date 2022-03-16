@@ -19,7 +19,7 @@ function App() {
               <Route path="/" component={Warehouses} exact />
               <Route path="/warehouses" component={WarehouseDetails} />
               <Route path="/warehouses/:id" component={Warehouses} />
-              <Route path="/inventory" exact component={EditInven} />
+              <Route path="/inventory" exact component={Inventory} />
               <Route path="/inventory/add" component={AddInven} />
               <Route path="/inventory/:id" component={Inventory} />
             </Switch>
