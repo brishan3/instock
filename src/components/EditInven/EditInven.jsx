@@ -69,7 +69,7 @@ class EditInven extends React.Component {
                   id="instock"
                   name="status"
                   value="instock"
-                  checked
+                  dafaultChecked
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -79,7 +79,6 @@ class EditInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="outofstock"
-                  checked
                 />
                 <label htmlFor="outofstock" className="radio-btn">
                   Out of stock
@@ -112,11 +111,9 @@ class EditInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
-          <Link to="/inventory" className="save-btn">
-            <button type="submit" form="form" className="add-btn">
-              Save
-            </button>
-          </Link>
+          <button type="submit" form="form" className="add-btn save-btn">
+            Save
+          </button>
         </div>
       </div>
     );

@@ -12,53 +12,55 @@ class AddInven extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(e.target);
-    console.log(e.target);
-    console.log(e.target);
-    console.log(e.target);
-    // console.log(e.target.status);
-    console.log(e.target);
-    // Validation
-    // if (
-    //   e.target.name.value === "" ||
-    //   e.target.description.value === "" ||
-    //   e.target.category.value === "Select" ||
-    //   e.target.quantity.value === "0" ||
-    //   e.target.warehouse.value === "Select"
-    // ) {
-    //   this.setState({ error: true });
-    // }
-    // // Validated
-    // else {
-    //   // Grab the warehouseID for later use
-    //   axios
-    //     .get("http://localhost:8080/warehouse")
-    //     .then((response) => {
-    //       let foundWarehouse = response.data.find(
-    //         (warehouse) => warehouse.name === e.target.warehouse.value
-    //       );
-    //       // Creating new object from the form
-    //       let newInventory = {
-    //         id: uuidv4(),
-    //         warehouseID: foundWarehouse.id,
-    //         warehouseName: e.target.warehouse.value,
-    //         itemName: e.target.name.value,
-    //         description: e.target.description.value,
-    //         category: e.target.category.value,
-    //         status: e.target.status.value,
-    //         quantity: e.target.quantity.value,
-    //       };
-    //       // Post the object to the server
-    //       axios
-    //         .post("http://localhost:8080/inventory", newInventory)
-    //         .then((response) => {
-    //           this.setState({ isSubmitted: true });
-    //           e.target.reset();
-    //         })
-    //         .catch((err) => console.log(err));
-    //     })
-    //     .catch((err) => console.log(err));
-    // }
+    console.log(e.target.itemname.value);
+    console.log(e.target.description.value);
+    console.log(e.target.category.value);
+    console.log(e.target.quantity.value);
+    console.log(e.target.status.value);
+    console.log(e.target.warehouse.value);
+
+    //Validation
+    if (
+      e.target.itemname.value === "" ||
+      e.target.description.value === "" ||
+      e.target.category.value === "Select" ||
+      e.target.quantity.value === "0" ||
+      e.target.warehouse.value === "Select"
+    ) {
+      this.setState({ error: true });
+      console.log(this.state.error);
+    }
+    // Validated
+    else {
+      // Grab the warehouseID for later use
+      axios
+        .get("http://localhost:8080/warehouse")
+        .then((response) => {
+          let foundWarehouse = response.data.find(
+            (warehouse) => warehouse.name === e.target.warehouse.value
+          );
+          // Creating new object from the form
+          let newInventory = {
+            id: uuidv4(),
+            warehouseID: foundWarehouse.id,
+            warehouseName: e.target.warehouse.value,
+            itemName: e.target.itemname.value,
+            description: e.target.description.value,
+            category: e.target.category.value,
+            status: e.target.status.value,
+            quantity: e.target.quantity.value,
+          };
+          // Post the object to the server
+          axios
+            .post("http://localhost:8080/inventory", newInventory)
+            .then((response) => {
+              this.setState({ isSubmitted: true });
+              e.target.reset();
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   render() {
@@ -84,7 +86,7 @@ class AddInven extends React.Component {
                 className="details__input"
                 placeholder="Item Name"
                 id="name"
-                name="name"
+                name="itemname"
               />
               <label htmlFor="description" className="details__label">
                 Description
@@ -127,7 +129,7 @@ class AddInven extends React.Component {
                   id="instock"
                   name="status"
                   value="instock"
-                  checked
+                  defaultChecked
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -137,7 +139,6 @@ class AddInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="outofstock"
-                  checked
                 />
                 <label htmlFor="outofstock" className="radio-btn">
                   Out of stock
@@ -180,11 +181,11 @@ class AddInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
-          <Link to="/inventory" className="save-btn">
-            <button type="submit" form="form" className="add-btn">
-              Save
-            </button>
-          </Link>
+          {/* <Link to="/inventory/add" className="save-btn"> */}
+          <button type="submit" form="form" className="add-btn save-btn">
+            Save
+          </button>
+          {/* </Link> */}
         </div>
       </div>
     );
