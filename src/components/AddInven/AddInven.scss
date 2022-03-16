@@ -179,3 +179,10 @@
   background: url("../../assets/icons/arrow_drop_down-24px.svg") no-repeat right
     7px #fff;
 }
+
+.add-btn {
+  border: none;
+  background-color: $interactive-color;
+  border: 1px solid $interactive-color;
+  color: $global-color;
+}
