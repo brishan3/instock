@@ -9,21 +9,6 @@
   &__title {
 
   }
-  &__button {
-    @include button-ify(fit-content);
-    &-icon {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      filter: brightness(100) saturate(0) ;
-    }
-    &-text {
-      display: none;
-      @include tablet {
-        display: block;
-      }
-    }
-  }
 }
 
 .details {
@@ -41,7 +26,6 @@
   &__address {
     margin-bottom: 2rem;
     @include tablet {
-      width: 10rem;
       margin-bottom: 0;
     }
   }
@@ -102,9 +86,36 @@
   &__text {
     text-transform: uppercase;
     color: $table-placeholders-color;
-    font-size: 0.8125rem;
   }
   &__sort-icon {
-    height: 18px;
+    height: 15px;
+  }
+}
+
+.inventory-list {
+
+}
+
+.inventory-item {
+  padding: 1rem 1.5rem;
+  @include tablet {
+    @include flexed(row, space-between, center);
+  }
+  &__details {
+    @include tablet {
+      width: 80%;
+      @include flexed(row, space-between, center);
+    }
+  }
+  &__column {
+    // width: 18%;
+    &--status {
+      margin-right: 11.5%;
+    }
+  }
+
+  &__label {
+    text-transform: uppercase;
+    color: $table-placeholders-color;
   }
 }
