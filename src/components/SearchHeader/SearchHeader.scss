@@ -5,7 +5,21 @@
 .inventory {
   padding: 1.5rem 1rem;
 
+  @include tablet {
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__title {
     padding-bottom: 1.5rem;
+  }
+
+  &__wrapper {
+    @include tablet {
+      display: flex;
+      gap: 1rem;
+    }
   }
 }
