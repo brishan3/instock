@@ -3,6 +3,7 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 //import { v4 as uuid } from "uuid";
+// add import statement for editWarehouse page/components that will be made 
 
 function WarehouseEntry({ warehouses }) {
   return (    
@@ -38,20 +39,21 @@ function WarehouseEntry({ warehouses }) {
                 </div>
               </div>
               <div className="warehouses__buttons">
-                <button className="warehouses__button">
+                <button className="warehouses__button"> 
+                  {/* WILL ADD EVENT HANDLER TO TRIGGER DELETE RESPONSE TO BACKEND */}
                   <img 
                     className="delete-icon" 
                     src={deleteIcon} 
                     alt="delete-icon" 
                   />
                 </button>
-                <button className="warehouses_buttons">
-                  <img 
-                    className="edit-icon" 
-                    src={editIcon} 
-                    alt="edit-icon" 
-                  />
-                </button>
+                <Link to="/warehouses/:id/edit" className="warehouses__button">
+                    <img 
+                      className="edit-icon" 
+                      src={editIcon} 
+                      alt="edit-icon" 
+                    />
+                </Link>
               </div>
             </li>
           ))}
