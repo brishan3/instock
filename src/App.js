@@ -6,6 +6,7 @@ import AddInven from "./components/AddInven/AddInven";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <div className="page-container__inner">
             <Switch>
               <Route path="/" component={Warehouses} exact />
-              <Route path="/warehouses" component={Warehouses} />
+              <Route path="/warehouses" component={WarehouseDetails} />
               <Route path="/warehouses/:id" component={Warehouses} />
               <Route path="/inventory" exact component={EditInven} />
               <Route path="/inventory/add" component={AddInven} />
