@@ -1,6 +1,8 @@
 import "./AddWarehouse.scss";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
+import error from "../../assets/icons/error-24px.svg";
+import axios from "axios";
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -11,36 +13,65 @@ const handleSubmit = (e) => {
   const name = e.target.name;
   const position = e.target.position;
   const phone = e.target.phone;
-  const email = e.target.email; 
+  const email = e.target.email;
 
   if (!whName.value.trim()) {
     whName.focus();
-    whName.classList.add("input--error");
+    whName.classList.add("details__input--error");
+    whName.nextSibling.style.display = "block";
   } else if (!address.value.trim()) {
     address.focus();
-    address.classList.add("input--error");
+    address.classList.add("details__input--error");
+    address.nextSibling.style.display = "block";
   } else if (!city.value.trim()) {
     city.focus();
-    city.classList.add("input--error");
+    city.classList.add("details__input--error");
+    city.nextSibling.style.display = "block";
   } else if (!country.value.trim()) {
     country.focus();
-    country.classList.add("input--error");
+    country.classList.add("details__input--error");
+    country.nextSibling.style.display = "block";
   } else if (!name.value.trim()) {
     name.focus();
-    name.classList.add("input--error");
+    name.classList.add("details__input--error");
+    name.nextSibling.style.display = "block";
   } else if (!position.value.trim()) {
     position.focus();
-    position.classList.add("input--error");
+    position.classList.add("details__input--error");
+    position.nextSibling.style.display = "block";
   } else if (!phone.value.trim()) {
     phone.focus();
-    phone.classList.add("input--error");
+    phone.classList.add("details__input--error");
+    phone.nextSibling.style.display = "block";
   } else if (!email.value.trim()) {
     email.focus();
-    email.classList.add("input--error");
+    email.classList.add("details__input--error");
+    email.nextSibling.style.display = "block";
   } else {
-    console.log(whName.value, address.value,city.value, country.value, name.value, position.value,phone.value, email.value)
+    const newWarehouse = {
+      whname: whName.value,
+      address: address.value,
+      city: city.value,
+      country: country.value,
+      name: name.value,
+      position: position.value,
+      phone: phone.value,
+      email: email.value,
+    };
+
+    const addWarehouse = axios.post(
+      "http://localhost:8080/warehouses",
+      newWarehouse
+    );
+    addWarehouse
+      .then((res) => {
+        window.alert(res.data);
+      })
+      .catch((err) => {
+        window.alert(err);
+      });
   }
-}
+};
 
 export default function EditWarehouse() {
   return (
@@ -49,9 +80,13 @@ export default function EditWarehouse() {
         <img src={backArrow} alt="back arrow" className="back-icon" />
         <h2 className="subheader__text">Add New Warehouse</h2>
       </div>
-      <form className="edit-inven__details" id="warehouse-form" onSubmit={handleSubmit}>
+      <form
+        className="edit-inven__details"
+        id="warehouse-form"
+        onSubmit={handleSubmit}
+      >
         <div className="details__container">
-          <h3 className="detail__subheader">Warehouse Details</h3>
+          <h3 className="details__subheader">Warehouse Details</h3>
           <div className="details__form">
             <label htmlFor="whName" className="details__label">
               Warehouse Name
@@ -61,8 +96,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Warehouse Name"
               id="whName"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="address" className="details__label">
               Street Address
             </label>
@@ -71,8 +109,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Street Address"
               id="address"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="city" className="details__label">
               City
             </label>
@@ -81,8 +122,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="City"
               id="city"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="country" className="details__label">
               Country
             </label>
@@ -91,12 +135,15 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Country"
               id="country"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
           </div>
         </div>
         <div className="details__container">
-          <h3 className="detail__subheader">Contact Details</h3>
+          <h3 className="details__subheader">Contact Details</h3>
           <div className="details__form">
             <label htmlFor="name" className="details__label">
               Contact Name
@@ -106,8 +153,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Warehouse Name"
               id="name"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="position" className="details__label">
               Position
             </label>
@@ -116,8 +166,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Street Address"
               id="position"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="phone" className="details__label">
               Phone Number
             </label>
@@ -126,8 +179,11 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Phone Number"
               id="phone"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
             <label htmlFor="email" className="details__label">
               Email
             </label>
@@ -136,17 +192,18 @@ export default function EditWarehouse() {
               className="details__input"
               placeholder="Email"
               id="email"
-              required
             />
+            <p className="details__err">
+              <img className="details__err--img" src={error} alt="error" /> This
+              field is required
+            </p>
           </div>
         </div>
       </form>
       <div className="buttons">
-        <button className="cancel-btn">
-          Cancel
-        </button>
-        <button type="submit"  form="warehouse-form" className="save-btn">
-          Save
+        <Link to="/"><button className="cancel-btn">Cancel</button></Link>
+        <button type="submit" form="warehouse-form" className="save-btn">
+          +Add Warehouse
         </button>
       </div>
     </div>
