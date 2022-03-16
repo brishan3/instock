@@ -29,7 +29,7 @@
 .details {
   padding: 1rem 1.5rem;
   border-bottom: 1px solid $outline-divider-color;
-  margin-bottom: 1rem;
+  // margin-bottom: 1rem;
   @include tablet {
     padding: 1.5rem 1.5rem;
     display: flex;
@@ -58,7 +58,10 @@
 
     }
     &-info {
-
+      margin-right: 1rem;
+      @include tablet {
+        margin-right: 15%;
+      }
     }
   }
   &__title {

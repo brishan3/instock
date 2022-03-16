@@ -17,17 +17,17 @@ function WarehouseDetails(props) {
     </div>
     <div className="details body-medium">
       <div className="details__address">
-        <p className="details__title">Warehouse address:</p>
+        <h4 className="details__title">Warehouse address:</h4>
         <p className="details__text">33 Pearl Street SW, Washington, USA</p>
       </div>
       <div className="details__contact">
         <div className="details__contact-name">
-          <p className="details__title">Contact name:</p>
+          <h4 className="details__title">Contact name:</h4>
           <p className="details__text">Graeme Lyon</p>
           <p className="details__text">Warehouse Manager</p>
         </div>
         <div className="details__contact-info">
-          <p className="details__title">Contact information:</p>
+          <h4 className="details__title">Contact information:</h4>
           <p className="details__text">+1 (647) 504-0911</p>
           <p className="details__text">glyon@instock.com</p>
         </div>

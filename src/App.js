@@ -17,8 +17,8 @@ function App() {
           <div className="page-container__inner">
             <Switch>
               <Route path="/" component={Warehouses} exact />
-              <Route path="/warehouses" component={WarehouseDetails} />
-              <Route path="/warehouses/:id" component={Warehouses} />
+              <Route path="/warehouses" exact component={Warehouses} />
+              <Route path="/warehouses/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />
               <Route path="/inventory/add" component={AddInven} />
               <Route path="/inventory/:id" component={Inventory} />
