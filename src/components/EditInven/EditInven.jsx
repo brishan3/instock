@@ -2,7 +2,68 @@ import "./EditInven.scss";
 import React from "react";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 class EditInven extends React.Component {
+  state = {
+    isSubmitted: false,
+    error: false,
+    status: "outofstock",
+  };
+
+  onChangeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  saveHandler = (e) => {
+    e.preventDefault();
+    //Validation
+    if (
+      e.target.itemname.value === "" ||
+      e.target.description.value === "" ||
+      e.target.category.value === "Select" ||
+      e.target.quantity.value === "0" ||
+      e.target.warehouse.value === "Select"
+    ) {
+      this.setState({ error: true });
+      console.log(this.state.error);
+    }
+    // Validated
+    else {
+      console.log(this.state.status);
+      // Grab the warehouseID for later use
+      axios
+        .get("http://localhost:8080/warehouses")
+        .then((response) => {
+          let foundWarehouse = response.data.find(
+            (warehouse) => warehouse.name === e.target.warehouse.value
+          );
+          // Creating new object from the form
+          let newInventory = {
+            id: uuidv4(),
+            warehouseID: foundWarehouse.id,
+            warehouseName: e.target.warehouse.value,
+            itemName: e.target.itemname.value,
+            description: e.target.description.value,
+            category: e.target.category.value,
+            status: e.target.status.value,
+            quantity: e.target.quantity.value,
+          };
+          // Post the object to the server
+          axios
+            .post("http://localhost:8080/inventory", newInventory)
+            .then((response) => {
+              this.setState({ isSubmitted: true });
+              e.target.reset();
+            })
+            .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   render() {
     return (
       <div className="box-shadow">
@@ -13,7 +74,7 @@ class EditInven extends React.Component {
         <form
           className="edit-inven__details"
           id="form"
-          onSubmit={this.submitHandler}
+          onSubmit={this.saveHandler}
         >
           <div className="details__container">
             <h3 className="detail__subheader">Item Details</h3>
@@ -69,7 +130,7 @@ class EditInven extends React.Component {
                   id="instock"
                   name="status"
                   value="instock"
-                  dafaultChecked
+                  onChange={this.onChangeHandler}
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -79,11 +140,34 @@ class EditInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="outofstock"
+                  defaultChecked
+                  onChange={this.onChangeHandler}
                 />
                 <label htmlFor="outofstock" className="radio-btn">
                   Out of stock
                 </label>
               </div>
+              <label
+                htmlFor="name"
+                className={`details__label ${
+                  this.state.status === "outofstock"
+                    ? "details__label--none"
+                    : ""
+                }`}
+              >
+                Quantity
+              </label>
+              <input
+                type="text"
+                className={`details__input details__input--quantity ${
+                  this.state.status === "outofstock"
+                    ? "details__input--none"
+                    : ""
+                }`}
+                placeholder="0"
+                id="name"
+                name="quantity"
+              />
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
               </label>
@@ -100,7 +184,7 @@ class EditInven extends React.Component {
                   <option value="San Fran">San Fran</option>
                   <option value="Santa Monica">Santa Monica</option>
                   <option value="Seattle">Seattle</option>
-                  <option value="Miami">Miama</option>
+                  <option value="Miami">Miami</option>
                   <option value="Boston">Boston</option>
                 </select>
               </div>
