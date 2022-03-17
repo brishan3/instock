@@ -101,7 +101,7 @@
     padding: 0.5rem 0 0.5rem 2rem;
 
     @include desktop {
-      padding: 0.5rem 0 0.5rem 2.5rem;
+      padding: 1rem 0 1rem 2.5rem;
     }
   }
 
@@ -150,5 +150,12 @@
   &__red {
     color: $delete-color;
     background-color: rgb(201 69 21 / 7%);
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3125rem;
+    align-items: center;
   }
 }
