@@ -24,7 +24,7 @@ function App() {
               <Route path="/warehouses/edit/:id" exact component={EditWarehouse} />
               <Route path="/warehouses/add" exact component={AddWarehouse} />
               <Route path="/warehouses/delete" component={DeleteWarehouse} />
-              <Route path="/warehouses/:id" component={WarehouseDetails} />
+              <Route path="/warehouse/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />
               <Route path="/inventory/add" component={AddInven} />
               <Route path="/inventory/edit/:id" component={EditInven} />
