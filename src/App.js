@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx'
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
+import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/" component={Warehouses} exact />
               <Route path="/warehouses" exact component={Warehouses} />
               <Route path="/warehouses/add" exact component={AddWarehouse} />
+              <Route path="/warehouses/delete" component={DeleteWarehouse} />
               <Route path="/warehouses/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />
               <Route path="/inventory/add" component={AddInven} />

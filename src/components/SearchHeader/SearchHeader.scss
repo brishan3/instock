@@ -4,8 +4,21 @@
 
 .inventory {
   padding: 1.5rem 1rem;
+  @include tablet{
+    @include flexed(row, space-between, center);
+    padding: 2rem;
+
+  }
 
   &__title {
     padding-bottom: 1.5rem;
+  }
+}
+.searchHeader { 
+
+  &__interactive {
+    @include tablet{
+      @include flexed(row, flex-end, flex-start);
+    }
   }
 }
