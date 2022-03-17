@@ -8,7 +8,7 @@ class AddInven extends React.Component {
   state = {
     isSubmitted: false,
     error: false,
-    status: false,
+    status: "instock",
   };
 
   onChangeHandler = (e) => {
@@ -184,7 +184,7 @@ class AddInven extends React.Component {
                   <option value="San Fran">San Fran</option>
                   <option value="Santa Monica">Santa Monica</option>
                   <option value="Seattle">Seattle</option>
-                  <option value="Miami">Miama</option>
+                  <option value="Miami">Miami</option>
                   <option value="Boston">Boston</option>
                 </select>
               </div>
