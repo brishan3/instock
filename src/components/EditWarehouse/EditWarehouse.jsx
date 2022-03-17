@@ -18,6 +18,8 @@ class EditWarehouse extends React.Component {
     position: "",
     phone: "",
     email: "",
+
+
   };
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
@@ -97,14 +99,14 @@ class EditWarehouse extends React.Component {
         email: email.value,
       };
 
-      const addWarehouse = axios.put(
+      const editWarehouse = axios.put(
         `${process.env.REACT_APP_API_URL}/warehouses/${this.state.id}`,
         updateWarehouse
       );
-      addWarehouse
+      editWarehouse
         .then((res) => {
           window.alert(res.data);
-          this.props.history.push(`warehouses/${this.state.id}`)
+          this.props.history.push(`/warehouses/${this.state.id}`)
         })
         .catch((err) => {
           window.alert(err);
@@ -137,15 +139,15 @@ class EditWarehouse extends React.Component {
           <div className="details__container">
             <h3 className="details__subheader">Warehouse Details</h3>
             <div className="details__form">
-              <label htmlFor="whName" className="details__label">
+              <label htmlFor="whname" className="details__label">
                 Warehouse Name
               </label>
               <input
                 type="text"
                 className="details__input"
                 placeholder="Warehouse Name"
-                id="whName"
-                name="whName"
+                id="whname"
+                name="whname"
                 value={this.state.whname}
                 onChange={this.handleChange}
               />
