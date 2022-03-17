@@ -2,7 +2,7 @@ import { Component } from 'react';
 import axios from 'axios';
 import './Warehouses.scss';
 
-import WarehouseEntry from '../../components/WarehouseEntry/WarehouseEntry';
+import WarehouseList from '../../components/WarehouseList/WarehouseList';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 
 // import SearchField from '../../components/SearchField/SearchField';
@@ -37,7 +37,7 @@ class Warehouses extends Component {
         return (
             <>
                 <SearchHeader title="Warehouses" content="+ add new warehouse"/>
-                <WarehouseEntry warehouses={this.state.warehouses} />
+                <WarehouseList warehouses={this.state.warehouses} />
             </>
         );
     }
