@@ -39,13 +39,10 @@
 
     }
     &-name {
-
+      width: 50%
     }
     &-info {
-      margin-right: 1rem;
-      @include tablet {
-        margin-right: 15%;
-      }
+      width: 50%;
     }
   }
   &__title {
@@ -64,17 +61,25 @@
   @include tablet {
     @include flexed(row, space-between, center);
   }
-  &__column {
+  &__left {
+    width: 70%;
     @include flexed(row, space-between, center);
   }
+  &__right {
+    width: 30%;
+    @include flexed(row, space-between, center);
+  }
+  &__column {
+    @include flexed(row, flex-start, center);
+  }
   &__item {
-
+    width: 30%;
   }
   &__category {
-
+    width: 30%;
   }
   &__status {
-    margin-right: 6.5rem;
+    width: 40%;
   }
   &__quantity {
 
@@ -92,30 +97,9 @@
   }
 }
 
-.inventory-list {
-
+.loading-message {
+  text-align: center;
+  margin: 1rem 0;
+  color: $outline-divider-color;
 }
 
-.inventory-item {
-  padding: 1rem 1.5rem;
-  @include tablet {
-    @include flexed(row, space-between, center);
-  }
-  &__details {
-    @include tablet {
-      width: 80%;
-      @include flexed(row, space-between, center);
-    }
-  }
-  &__column {
-    // width: 18%;
-    &--status {
-      margin-right: 11.5%;
-    }
-  }
-
-  &__label {
-    text-transform: uppercase;
-    color: $table-placeholders-color;
-  }
-}
