@@ -21,7 +21,7 @@ function App() {
               <Route path="/warehouses/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />
               <Route path="/inventory/add" component={AddInven} />
-              <Route path="/inventory/:id" component={Inventory} />
+              <Route path="/inventory/edit/:id" component={EditInven} />
             </Switch>
           </div>
           <Footer />
