@@ -9,6 +9,7 @@ import axios from "axios";
 
 class EditWarehouse extends React.Component {
   state = {
+    id: "",
     whname: "",
     address: "",
     city: "",
@@ -26,6 +27,7 @@ class EditWarehouse extends React.Component {
       .then((res) => {
         // console.log(res.data);
         this.setState({
+          id: res.data.id,
           whname: res.data.name,
           address: res.data.address,
           city: res.data.city,
@@ -40,12 +42,80 @@ class EditWarehouse extends React.Component {
         console.log(result);
       });
   };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const whName = e.target.whName;
+    const address = e.target.address;
+    const city = e.target.city;
+    const country = e.target.country;
+    const name = e.target.name;
+    const position = e.target.position;
+    const phone = e.target.phone;
+    const email = e.target.email;
+
+    if (!whName.value.trim()) {
+      whName.focus();
+      whName.classList.add("details__input--error");
+      whName.nextSibling.style.display = "block";
+    } else if (!address.value.trim()) {
+      address.focus();
+      address.classList.add("details__input--error");
+      address.nextSibling.style.display = "block";
+    } else if (!city.value.trim()) {
+      city.focus();
+      city.classList.add("details__input--error");
+      city.nextSibling.style.display = "block";
+    } else if (!country.value.trim()) {
+      country.focus();
+      country.classList.add("details__input--error");
+      country.nextSibling.style.display = "block";
+    } else if (!name.value.trim()) {
+      name.focus();
+      name.classList.add("details__input--error");
+      name.nextSibling.style.display = "block";
+    } else if (!position.value.trim()) {
+      position.focus();
+      position.classList.add("details__input--error");
+      position.nextSibling.style.display = "block";
+    } else if (!phone.value.trim()) {
+      phone.focus();
+      phone.classList.add("details__input--error");
+      phone.nextSibling.style.display = "block";
+    } else if (!email.value.trim()) {
+      email.focus();
+      email.classList.add("details__input--error");
+      email.nextSibling.style.display = "block";
+    } else {
+      const updateWarehouse = {
+        whname: whName.value,
+        address: address.value,
+        city: city.value,
+        country: country.value,
+        name: name.value,
+        position: position.value,
+        phone: phone.value,
+        email: email.value,
+      };
+
+      const addWarehouse = axios.put(
+        `${process.env.REACT_APP_API_URL}/warehouses/${this.state.id}`,
+        updateWarehouse
+      );
+      addWarehouse
+        .then((res) => {
+          window.alert(res.data);
+          this.props.history.push(`warehouses/${this.state.id}`)
+        })
+        .catch((err) => {
+          window.alert(err);
+        });
+    }
+  };
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-    console.log(event.target.name, event.target.value);
   };
 
   componentDidMount() {
@@ -59,7 +129,11 @@ class EditWarehouse extends React.Component {
           <img src={backArrow} alt="back arrow" className="back-icon" />
           <h2 className="subheader__text">Edit Warehouse</h2>
         </div>
-        <form className="edit-inven__details" id="warehouse-form">
+        <form
+          className="edit-inven__details"
+          id="warehouse-form"
+          onSubmit={this.handleSubmit}
+        >
           <div className="details__container">
             <h3 className="details__subheader">Warehouse Details</h3>
             <div className="details__form">
