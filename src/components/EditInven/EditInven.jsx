@@ -8,7 +8,8 @@ class EditInven extends React.Component {
   state = {
     isSubmitted: false,
     error: false,
-    status: "outofstock",
+    status: "Out of Stock",
+    inventory: {},
   };
 
   onChangeHandler = (e) => {
@@ -16,6 +17,18 @@ class EditInven extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+
+  componentDidMount() {
+    let inventoryID = this.props.match.params.id;
+    axios.get(`${process.env.REACT_APP_API_URL}/inventory`).then((response) => {
+      let foundInventory = response.data.find(
+        (inventory) => inventory.id === inventoryID
+      );
+      this.setState({
+        inventory: foundInventory,
+      });
+    });
+  }
 
   saveHandler = (e) => {
     e.preventDefault();
@@ -28,21 +41,19 @@ class EditInven extends React.Component {
       e.target.warehouse.value === "Select"
     ) {
       this.setState({ error: true });
-      console.log(this.state.error);
     }
     // Validated
     else {
-      console.log(this.state.status);
       // Grab the warehouseID for later use
       axios
-        .get("http://localhost:8080/warehouses")
+        .get(`${process.env.REACT_APP_API_URL}/warehouses`)
         .then((response) => {
           let foundWarehouse = response.data.find(
             (warehouse) => warehouse.name === e.target.warehouse.value
           );
           // Creating new object from the form
           let newInventory = {
-            id: uuidv4(),
+            id: this.state.inventory.id,
             warehouseID: foundWarehouse.id,
             warehouseName: e.target.warehouse.value,
             itemName: e.target.itemname.value,
@@ -51,9 +62,9 @@ class EditInven extends React.Component {
             status: e.target.status.value,
             quantity: e.target.quantity.value,
           };
-          // Post the object to the server
+          // Make an Edit request to the server
           axios
-            .post("http://localhost:8080/inventory", newInventory)
+            .edit(`${process.env.REACT_APP_API_URL}/inventory`, newInventory)
             .then((response) => {
               this.setState({ isSubmitted: true });
               e.target.reset();
@@ -68,7 +79,9 @@ class EditInven extends React.Component {
     return (
       <div className="box-shadow">
         <div className="edit-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/inventory">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Edit Inventory Item</h2>
         </div>
         <form
@@ -88,6 +101,7 @@ class EditInven extends React.Component {
                 placeholder="Item Name"
                 id="name"
                 name="name"
+                value={this.state.inventory.itemName}
               />
               <label htmlFor="description" className="details__label">
                 Description
@@ -98,6 +112,7 @@ class EditInven extends React.Component {
                 placeholder="Please enter a brief item description..."
                 id="description"
                 name="description"
+                value={this.state.inventory.description}
               ></textarea>
               <label htmlFor="category" className="details__label">
                 Category
@@ -107,6 +122,7 @@ class EditInven extends React.Component {
                   name="category"
                   id="category"
                   className="details__select"
+                  value={this.state.inventory.category}
                 >
                   <option value="Select">Select</option>
                   <option value="Electronics">Electronics</option>
@@ -129,7 +145,7 @@ class EditInven extends React.Component {
                   type="radio"
                   id="instock"
                   name="status"
-                  value="instock"
+                  value="In Stock"
                   onChange={this.onChangeHandler}
                 />
                 <label htmlFor="instock" className="radio-btn">
@@ -139,7 +155,7 @@ class EditInven extends React.Component {
                   type="radio"
                   id="outofstock"
                   name="status"
-                  value="outofstock"
+                  value="Out of Stock"
                   defaultChecked
                   onChange={this.onChangeHandler}
                 />
@@ -150,7 +166,7 @@ class EditInven extends React.Component {
               <label
                 htmlFor="name"
                 className={`details__label ${
-                  this.state.status === "outofstock"
+                  this.state.status === "Out of Stock"
                     ? "details__label--none"
                     : ""
                 }`}
@@ -160,13 +176,14 @@ class EditInven extends React.Component {
               <input
                 type="text"
                 className={`details__input details__input--quantity ${
-                  this.state.status === "outofstock"
+                  this.state.status === "Out of Stock"
                     ? "details__input--none"
                     : ""
                 }`}
                 placeholder="0"
                 id="name"
                 name="quantity"
+                value={this.state.inventory.quantity}
               />
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
@@ -176,6 +193,7 @@ class EditInven extends React.Component {
                   name="warehouse"
                   id="warehouse"
                   className="warehouse__select"
+                  value={this.state.inventory.warehouseName}
                 >
                   <option value="Select">Select</option>
                   <option value="Manhattan">Manhattan</option>
