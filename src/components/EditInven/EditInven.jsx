@@ -10,6 +10,7 @@ class EditInven extends React.Component {
     error: false,
     status: "Out of Stock",
     inventory: {},
+    loading: true,
   };
 
   onChangeHandler = (e) => {
@@ -17,7 +18,35 @@ class EditInven extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
+  onChangeDescription = (e) => {
+    this.setState({
+      inventory: {
+        ...this.state.inventory,
+        description: e.target.value,
+      },
+    });
+  };
+  onChangeName = (e) => {
+    this.setState({
+      inventory: { ...this.state.inventory, itemName: e.target.value },
+    });
+  };
 
+  onChangeCategory = (e) => {
+    this.setState({
+      inventory: { ...this.state.inventory, category: e.target.value },
+    });
+  };
+  onChangeQuantity = (e) => {
+    this.setState({
+      inventory: { ...this.state.inventory, quantity: e.target.value },
+    });
+  };
+  onChangeWarehouse = (e) => {
+    this.setState({
+      inventory: { ...this.state.inventory, warehouseName: e.target.value },
+    });
+  };
   componentDidMount() {
     let inventoryID = this.props.match.params.id;
     axios.get(`${process.env.REACT_APP_API_URL}/inventory`).then((response) => {
@@ -26,6 +55,8 @@ class EditInven extends React.Component {
       );
       this.setState({
         inventory: foundInventory,
+        loading: false,
+        status: foundInventory.status,
       });
     });
   }
@@ -45,37 +76,41 @@ class EditInven extends React.Component {
     // Validated
     else {
       // Grab the warehouseID for later use
+      // axios
+      //   .get(`${process.env.REACT_APP_API_URL}/warehouses`)
+      //   .then((response) => {
+      //     let foundWarehouse = response.data.find(
+      //       (warehouse) => warehouse.name === e.target.warehouse.value
+      //     );
+      // Creating new object from the form
+      let newInventory = {
+        id: this.state.inventory.id,
+        // warehouseID: foundWarehouse.id,
+        warehouseName: e.target.warehouse.value,
+        itemName: e.target.itemname.value,
+        description: e.target.description.value,
+        category: e.target.category.value,
+        status: e.target.status.value,
+        quantity: e.target.quantity.value,
+      };
+      // Make an Edit request to the server
       axios
-        .get(`${process.env.REACT_APP_API_URL}/warehouses`)
+        .put(`${process.env.REACT_APP_API_URL}/inventory`, newInventory)
         .then((response) => {
-          let foundWarehouse = response.data.find(
-            (warehouse) => warehouse.name === e.target.warehouse.value
-          );
-          // Creating new object from the form
-          let newInventory = {
-            id: this.state.inventory.id,
-            warehouseID: foundWarehouse.id,
-            warehouseName: e.target.warehouse.value,
-            itemName: e.target.itemname.value,
-            description: e.target.description.value,
-            category: e.target.category.value,
-            status: e.target.status.value,
-            quantity: e.target.quantity.value,
-          };
-          // Make an Edit request to the server
-          axios
-            .edit(`${process.env.REACT_APP_API_URL}/inventory`, newInventory)
-            .then((response) => {
-              this.setState({ isSubmitted: true });
-              e.target.reset();
-            })
-            .catch((err) => console.log(err));
+          this.setState({ isSubmitted: true });
+          e.target.reset();
         })
         .catch((err) => console.log(err));
+      // })
+      // .catch((err) => console.log(err));
     }
   };
 
   render() {
+    let isInStock = this.state.inventory.status === "In Stock" ? true : false;
+    if (this.state.loading) {
+      return <p>loading</p>;
+    }
     return (
       <div className="box-shadow">
         <div className="edit-inven__subheader">
@@ -100,7 +135,8 @@ class EditInven extends React.Component {
                 className="details__input"
                 placeholder="Item Name"
                 id="name"
-                name="name"
+                name="itemname"
+                onChange={this.onChangeName}
                 value={this.state.inventory.itemName}
               />
               <label htmlFor="description" className="details__label">
@@ -112,6 +148,7 @@ class EditInven extends React.Component {
                 placeholder="Please enter a brief item description..."
                 id="description"
                 name="description"
+                onChange={this.onChangeDescription}
                 value={this.state.inventory.description}
               ></textarea>
               <label htmlFor="category" className="details__label">
@@ -122,6 +159,7 @@ class EditInven extends React.Component {
                   name="category"
                   id="category"
                   className="details__select"
+                  onChange={this.onChangeCategory}
                   value={this.state.inventory.category}
                 >
                   <option value="Select">Select</option>
@@ -146,6 +184,7 @@ class EditInven extends React.Component {
                   id="instock"
                   name="status"
                   value="In Stock"
+                  defaultChecked={isInStock}
                   onChange={this.onChangeHandler}
                 />
                 <label htmlFor="instock" className="radio-btn">
@@ -156,7 +195,7 @@ class EditInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="Out of Stock"
-                  defaultChecked
+                  defaultChecked={!isInStock}
                   onChange={this.onChangeHandler}
                 />
                 <label htmlFor="outofstock" className="radio-btn">
@@ -180,6 +219,7 @@ class EditInven extends React.Component {
                     ? "details__input--none"
                     : ""
                 }`}
+                onChange={this.onChangeQuantity}
                 placeholder="0"
                 id="name"
                 name="quantity"
@@ -193,6 +233,7 @@ class EditInven extends React.Component {
                   name="warehouse"
                   id="warehouse"
                   className="warehouse__select"
+                  onChange={this.onChangeWarehouse}
                   value={this.state.inventory.warehouseName}
                 >
                   <option value="Select">Select</option>
