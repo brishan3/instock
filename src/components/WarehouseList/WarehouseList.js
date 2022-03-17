@@ -7,7 +7,7 @@ import WarehouseElement from "../WarehouseElement/WarehouseElement";
 //import { v4 as uuid } from "uuid";
 // add import statement for editWarehouse page/components that will be made 
 
-function WarehouseList({ warehouses }) {
+function WarehouseList({ warehouses, showDeleteModal }) {
   return (    
       <div className="wrapper">
           <div className="column-labels">
@@ -49,6 +49,7 @@ function WarehouseList({ warehouses }) {
                   contactEmail={warehouse.contact.email}
                   id={warehouse.id}
                   key={warehouse.id}
+                  showDeleteModal={showDeleteModal}
                   />
               )})
           }

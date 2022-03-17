@@ -4,14 +4,14 @@ import chevronIcon from '../../assets/icons/chevron_right-24px.svg'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import { Link } from 'react-router-dom'
 
-function WarehouseElement({name, address, city, country, contactName, contactPhone, contactEmail, id}) {
+function WarehouseElement({name, address, city, country, contactName, contactPhone, contactEmail, id, showDeleteModal}) {
     return (
         <li className="warehouse-item body-medium">
         <div className="warehouse-item__details">
           <div className="warehouse-item__details-block warehouse-item__details-block--left">
             <div className="warehouse-item__column warehouse-item__warehouse">
               <h4 className="warehouse-item__label">Warehouse</h4>
-              <Link className="warehouse-item__text-block" to={`/warehouse/${id}`}>
+              <Link className="warehouse-item__text-block" to={`/warehouses/${id}`}>
                 <p className="warehouse-item__text warehouse-item__text--warehouse">
                   {name}
                 </p>
@@ -44,14 +44,14 @@ function WarehouseElement({name, address, city, country, contactName, contactPho
             <p className="warehouse-item__text">{contactEmail}</p>
           </div>
           <div className="warehouse-item__column warehouse-item__actions">
-            <Link to={`/warehouse/delete/${id}`} className="warehouse-item__delete-button">
+            <button className="warehouse-item__delete-button" type="button" onClick= {()=> {showDeleteModal(name, id)}} >
               <img
                 className="warehouse-item__action-icon"
                 src={deleteIcon}
                 alt="Delete icon"
               />
-            </Link>
-            <Link to={`/warehouse/edit/${id}`}>
+            </button>
+            <Link to={`/warehouses/edit/${id}`}>
               <img
                 className="warehouse-item__action-icon"
                 src={editIcon}
