@@ -1,8 +1,11 @@
-import "./EditInven.scss";
+import "./EditWareouse.scss";
 import React from "react";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
-class EditInven extends React.Component {
+// CHANGE OUT ALL THE EDIT INVENTORY STUFF FOR WAREHOUSE SPECIFIC DETAILS 
+//ALL CODE BELOW IS JUST FOR SHOW/PLACEHOLDER
+
+class EditWarehouse extends React.Component {
   render() {
     return (
       <div className="box-shadow">
@@ -10,11 +13,7 @@ class EditInven extends React.Component {
           <img src={backArrow} alt="back arrow" className="back-icon" />
           <h2 className="subheader__text">Edit Inventory Item</h2>
         </div>
-        <form
-          className="edit-inven__details"
-          id="form"
-          onSubmit={this.submitHandler}
-        >
+        <form className="edit-inven__details">
           <div className="details__container">
             <h3 className="detail__subheader">Item Details</h3>
             <div className="details__form">
@@ -26,7 +25,6 @@ class EditInven extends React.Component {
                 className="details__input"
                 placeholder="Item Name"
                 id="name"
-                name="name"
               />
               <label htmlFor="description" className="details__label">
                 Description
@@ -36,7 +34,6 @@ class EditInven extends React.Component {
                 className="details__textarea"
                 placeholder="Please enter a brief item description..."
                 id="description"
-                name="description"
               ></textarea>
               <label htmlFor="category" className="details__label">
                 Category
@@ -47,7 +44,6 @@ class EditInven extends React.Component {
                   id="category"
                   className="details__select"
                 >
-                  <option value="Select">Select</option>
                   <option value="Electronics">Electronics</option>
                   <option value="Gear">Gear</option>
                   <option value="Apparel">Apparel</option>
@@ -69,7 +65,7 @@ class EditInven extends React.Component {
                   id="instock"
                   name="status"
                   value="instock"
-                  dafaultChecked
+                  checked
                 />
                 <label htmlFor="instock" className="radio-btn">
                   In stock
@@ -79,6 +75,7 @@ class EditInven extends React.Component {
                   id="outofstock"
                   name="status"
                   value="outofstock"
+                  checked
                 />
                 <label htmlFor="outofstock" className="radio-btn">
                   Out of stock
@@ -93,7 +90,6 @@ class EditInven extends React.Component {
                   id="warehouse"
                   className="warehouse__select"
                 >
-                  <option value="Select">Select</option>
                   <option value="Manhattan">Manhattan</option>
                   <option value="Washington">Washington</option>
                   <option value="Jersey">Jersey</option>
@@ -111,13 +107,11 @@ class EditInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
-          <button type="submit" form="form" className="add-btn save-btn">
+          <Link to="/inventory" className="save-btn">
             Save
-          </button>
+          </Link>
         </div>
       </div>
     );
   }
 }
-
-export default EditInven;
