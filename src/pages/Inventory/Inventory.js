@@ -1,7 +1,7 @@
 import { Component } from "react";
 import "./Inventory.scss";
 import SearchHeader from "../../components/SearchHeader/SearchHeader";
-import InventoryEntry from "../../components/InventoryEntry/InventoryEntry";
+import InventoryList from "../../components/InventoryList/InventoryList";
 import axios from "axios";
 
 class Inventory extends Component {
@@ -31,7 +31,7 @@ class Inventory extends Component {
     return (
       <>
         <SearchHeader title="Inventory" content="+ add new item" />
-        <InventoryEntry inventories={this.state.inventories} />
+        <InventoryList inventories={this.state.inventories} />
       </>
     );
   }
