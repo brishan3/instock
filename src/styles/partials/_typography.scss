@@ -80,10 +80,11 @@ h4 {
   }
 
   //Table Headers
-  h4 {
+  h4,
+  th {
     font-size: 0.75rem;
     line-height: 1.375rem;
-    font-weight: $regular;
+    font-weight: $semi-bold;
   }
 
   .body-large {

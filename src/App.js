@@ -5,7 +5,8 @@ import EditInven from "./components/EditInven/EditInven";
 import AddInven from "./components/AddInven/AddInven";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx'
+import AddWarehouse from './components/AddWarehouse/AddWarehouse.jsx';
+import EditWarehouse from "./components/EditWarehouse/EditWarehouse.jsx";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
@@ -20,6 +21,7 @@ function App() {
             <Switch>
               <Route path="/" component={Warehouses} exact />
               <Route path="/warehouses" exact component={Warehouses} />
+              <Route path="/warehouses/edit/:id" exact component={EditWarehouse} />
               <Route path="/warehouses/add" exact component={AddWarehouse} />
               <Route path="/warehouses/delete" component={DeleteWarehouse} />
               <Route path="/warehouses/:id" component={WarehouseDetails} />
