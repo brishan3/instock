@@ -79,7 +79,9 @@ class EditInven extends React.Component {
     return (
       <div className="box-shadow">
         <div className="edit-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/inventory">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Edit Inventory Item</h2>
         </div>
         <form

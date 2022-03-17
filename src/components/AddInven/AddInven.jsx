@@ -66,7 +66,9 @@ class AddInven extends React.Component {
     return (
       <div className="box-shadow">
         <div className="add-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/inventory">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Add New Inventory Item</h2>
         </div>
         <form
