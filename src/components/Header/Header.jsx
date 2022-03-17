@@ -11,14 +11,14 @@ function Header() {
         </Link>
         <div className="nav__list">
           <Link
-            to="warehouses"
+            to="/warehouses"
             className="nav__link
          nav__link--highlight"
           >
             Warehouses
           </Link>
 
-          <Link to="inventory" className="nav__link">
+          <Link to="/inventory" className="nav__link">
             Inventory
           </Link>
         </div>

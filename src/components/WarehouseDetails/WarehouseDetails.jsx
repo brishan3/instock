@@ -64,7 +64,7 @@ class WarehouseDetails extends Component {
           <>
           <div className='details-subheader'>
             <h2 className='details-subheader__title'>{this.state.warehouse.name}</h2>
-            < EditButton route='/warehouses/edit/:id'/>
+            < EditButton route={`/warehouses/edit/${this.state.warehouse.id}`}/>
           </div>
           <div className="details body-medium">
             <div className="details__address">
