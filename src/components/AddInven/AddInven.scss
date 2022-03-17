@@ -88,10 +88,8 @@
   border: 1px solid $outline-divider-color;
   padding-left: 1rem;
   padding-top: 0.5rem;
-  &::placeholder {
-    font-family: "Titillium Web";
-    font-size: 0.813rem;
-  }
+  font-family: "Titillium Web";
+  font-size: 0.813rem;
   &:focus {
     outline: none;
     border: 1px solid $interactive-color;

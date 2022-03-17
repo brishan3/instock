@@ -1,0 +1,52 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/colors" as *;
+@use "../../styles/partials/fonts" as *;
+
+.cancel-btn {
+    font-size: 0.8125rem;
+    text-align: center;
+    padding: 0.719rem 0;
+    color: $outline-divider-color;
+    font-weight: 600;
+    width: 100%;
+    &:hover {
+      border-bottom: 1px solid $global-color;
+    }
+    @include tablet {
+      font-size: 0.875rem;
+      width: 20%;
+    }
+    @include desktop {
+      width: 12%;
+    }
+    &--highlight {
+      background-color: $global-text-color;
+      border-radius: 20px;
+      color: $global-color;
+    }
+  }
+
+  .delete-btn{
+    font-size: 0.8125rem;
+    text-align: center;
+    padding: 0.719rem 0;
+    color: $outline-divider-color;
+    font-weight: 600;
+    width: 100%;
+    &:hover {
+      border-bottom: 1px solid $global-color;
+    }
+    @include tablet {
+      font-size: 0.875rem;
+      width: 20%;
+    }
+    @include desktop {
+      width: 12%;
+    }
+    &--highlight {
+      background-color: $global-text-color;
+      border-radius: 20px;
+      color: $global-color;
+    }
+  }
+  

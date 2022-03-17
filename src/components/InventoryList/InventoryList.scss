@@ -1,10 +1,14 @@
 @use "../../styles/partials/colors" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/fonts" as *;
 
 //Mobile
 .items {
   padding: 0 1.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: $regular;
 
   @include tablet {
     display: none;
@@ -28,6 +32,13 @@
     padding-bottom: 0.25rem;
     color: $table-placeholders-color;
     text-transform: uppercase;
+  }
+
+  &__name {
+    font-weight: $semi-bold;
+    color: $interactive-color;
+    display: flex;
+    cursor: pointer;
   }
 
   &__tag {
@@ -68,10 +79,6 @@
     border-style: none;
     cursor: pointer;
     background-color: transparent;
-
-    &:hover {
-      background-color: rgba(46, 102, 229, 0.07);
-    }
   }
 }
 
@@ -94,7 +101,7 @@
     padding: 0.5rem 0 0.5rem 2rem;
 
     @include desktop {
-      padding: 0.5rem 0 0.5rem 2.5rem;
+      padding: 1rem 0 1rem 2.5rem;
     }
   }
 
@@ -112,6 +119,13 @@
     @include desktop {
       padding: 1rem 0 0 1rem 2.5rem;
     }
+  }
+
+  .name {
+    font-weight: $semi-bold;
+    color: $interactive-color;
+    display: flex;
+    cursor: pointer;
   }
 
   &__tag {
@@ -136,5 +150,12 @@
   &__red {
     color: $delete-color;
     background-color: rgb(201 69 21 / 7%);
+  }
+
+  &__label {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3125rem;
+    align-items: center;
   }
 }

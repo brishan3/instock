@@ -28,14 +28,12 @@ class AddInven extends React.Component {
       e.target.warehouse.value === "Select"
     ) {
       this.setState({ error: true });
-      console.log(this.state.error);
     }
     // Validated
     else {
-      console.log(this.state.status);
       // Grab the warehouseID for later use
       axios
-        .get("http://localhost:8080/warehouses")
+        .get(`${process.env.REACT_APP_API_URL}/warehouses`)
         .then((response) => {
           let foundWarehouse = response.data.find(
             (warehouse) => warehouse.name === e.target.warehouse.value
@@ -49,11 +47,11 @@ class AddInven extends React.Component {
             description: e.target.description.value,
             category: e.target.category.value,
             status: e.target.status.value,
-            quantity: e.target.quantity.value,
+            quantity: e.target.quantity.value || 0,
           };
           // Post the object to the server
           axios
-            .post("http://localhost:8080/inventory", newInventory)
+            .post(`${process.env.REACT_APP_API_URL}/inventory`, newInventory)
             .then((response) => {
               this.setState({ isSubmitted: true });
               e.target.reset();
@@ -68,7 +66,9 @@ class AddInven extends React.Component {
     return (
       <div className="box-shadow">
         <div className="add-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/inventory">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Add New Inventory Item</h2>
         </div>
         <form
