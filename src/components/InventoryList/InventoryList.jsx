@@ -1,18 +1,23 @@
 import "./InventoryList.scss";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import { v4 as uuid } from "uuid";
+import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function InventoryList({ inventories }) {
   return (
     <>
-      <ul className="items body-medium  mobile">
+      <ul className="items  mobile">
         {inventories.map((inventory) => (
           <li className="items__list" key={uuid()}>
             <div className="items__wrapper">
               <div className="items__content">
                 <h4 className="items__header">inventory item</h4>
-                <p className="items__description">{inventory.itemName}</p>
+                <p className="items__name">
+                  {inventory.itemName}
+                  <img src={chevronRight} alt="chevron right" />
+                </p>
               </div>
               <div className="items__content">
                 <h4 className="items__header">status</h4>
@@ -62,16 +67,49 @@ function InventoryList({ inventories }) {
 
       <table className="table body-medium tablet-desktop">
         <tr className="table__head">
-          <th className="table__header">inventory item</th>
-          <th className="table__header">category</th>
-          <th className="table__header">status</th>
-          <th className="table__header">qtd</th>
-          <th className="table__header">warehouse</th>
-          <th className="table__header">actions</th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4>inventory item</h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4> category </h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4> status</h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4> qtd</h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4> warehouse</h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
+          <th className="table__header">
+            <div className="table__label">
+              <h4>actions </h4>
+              <img className="column-labels__sort-icon" src={sortIcon} />
+            </div>
+          </th>
         </tr>
         {inventories.map((inventory) => (
           <tr className="table__row" key={uuid}>
-            <td className="table__data">{inventory.itemName}</td>
+            <td className="table__data name">
+              {inventory.itemName}
+              <img src={chevronRight} alt="chevron right" />
+            </td>
             <td className="table__data">{inventory.category}</td>
             <td className="table__data">
               <div
