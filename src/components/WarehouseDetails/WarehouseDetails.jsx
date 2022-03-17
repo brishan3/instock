@@ -42,7 +42,6 @@ class WarehouseDetails extends Component {
         this.setState(
           {
             warehouse: res.data,
-            contact: res.data.contact
           }
         )
         this.getInventoryByWarehouseId(currentID);
