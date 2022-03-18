@@ -30,9 +30,9 @@ function WarehouseInvElement({name, category, status, quantity, id}) {
             <h4 className="inventory-item__label">Status</h4>
             {status.toLowerCase() === "in stock" ? 
               (
-                <p className="inventory-item__text inventory-item__stock inventory-item__stock--true">{status}</p>
+                <h4 className="inventory-item__text inventory-item__stock inventory-item__stock--true">{status}</h4>
               ) : (
-                <p className="inventory-item__text inventory-item__stock">{status}</p>
+                <h4 className="inventory-item__text inventory-item__stock">{status}</h4>
               )
             }
           </div>
