@@ -36,6 +36,7 @@ class AddWarehouse extends React.Component {
     console.log("button clicked");
     console.log(this.state.submit);
     if (this.state.formvalid) {
+      console.log(this.state.formvalid)
       const newWarehouse = {
         whname: this.state.whname,
         address: this.state.address,
@@ -59,6 +60,10 @@ class AddWarehouse extends React.Component {
           window.alert(err);
         });
     } else {
+      const inputlist = e.target.querySelectorAll("input")
+      inputlist.forEach((field) => {
+        this.validateField(field, field.value);
+      })
       this.setState({
         whnamevalid: false,
         addressvalid: false,
@@ -149,17 +154,13 @@ class AddWarehouse extends React.Component {
     if (!status) {
       field.classList.add("details__input--error");
       field.nextSibling.style.display = "block";
-      this.setState({
-        formvalid: false,
-      });
+
     } else {
       field.classList.remove("details__input--error");
       field.nextSibling.style.display = "none";
-      this.setState({
-        formvalid: true,
-      });
     }
   }
+
   
 
   render() {
