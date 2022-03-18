@@ -16,17 +16,17 @@ function WarehouseList({ warehouses, showDeleteModal }) {
                 <h4 className="column-labels__text">Warehouse</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__category">
+              <div className="column-labels__column column-labels__address">
                 <h4 className="column-labels__text">Address</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__status">
+              <div className="column-labels__column column-labels__contactName">
                 <h4 className="column-labels__text">Contact Name</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
             </div>
             <div className="column-labels__right">
-              <div className="column-labels__column column-labels__quantity">
+              <div className="column-labels__column column-labels__contactInformation">
                 <h4 className="column-labels__text">Contact Information</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>

@@ -4,84 +4,65 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles//partials/typography" as *;
 
-.warehouseTable{
-    border-top:3px solid red; 
-    display:flex;
-    justify-content: flex-start;
-    align-items:flex-start;
-    gap:3.5rem;
-    padding:1rem 1.5rem;
-    &__location{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-    &__contact{
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-}
-.delete-icon{
-    min-width:14px;
-    min-height:18px;
-}
-.edit-icon{
-    align-self:flex-end;
-    min-width:18px;
-    min-height:18px;
-}
-///
 
 .warehouses {
-
-  
     &__list {
       border-top: 1px solid $outline-divider-color;
       padding: 0 1.5rem;
     }
-  
-    &__wrapper {
-      display: flex;
-      justify-content: space-between;
-    }
-  
-    &__content {
-      flex: 1;
-    }
-  
-    &__header {
-      padding-top: 1rem;
-      padding-bottom: 0.25rem;
-      color: $table-placeholders-color;
-      text-transform: uppercase;
-    }
+}
 
-    &__description {
-      text-decoration: none;
-      color:$interactive-color;
-      font-size: 0.8125rem;
-      line-height: 1.25rem;
-      font-weight: $semi-bold;
-    }
-  
-    
-    &__buttons {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-    }
-  
-    &__button {
-      border-style: none;
-      background-color: $global-color;
-    }
+.column-labels {
+  display: none;
+  padding: 1rem 1.5rem;
+  background-color: $page-background-color;
+  @include tablet {
+    @include flexed(row, space-between, center);
   }
+
+  &__left {
+    width: 60%;
+    @include flexed(row, space-between, center);
+  }
+
+  &__right {
+    width: 40%;
+    @include flexed(row, space-between, center);
+  }
+
+  &__column {
+    @include flexed(row, flex-start, center);
+  }
+
+  &__item {
+    width: 33%;
+  }
+
+  &__address {
+    width: 33%;
+  }
+
+  &__contactName {
+    width: 33%;
+  }
+
+  &__contactInformation {
+    width:70%;
+  }
+
+  &__actions {
+    width:30%;
+  }
+
+  &__text {
+    text-transform: uppercase;
+    color: $table-placeholders-color;
+  }
+
+  &__sort-icon {
+    height: 15px;
+  }
+}
 
 
  

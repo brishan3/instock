@@ -22,7 +22,7 @@ class DeleteWarehouse extends React.Component {
                             <button type="button" className="cancel-btn" onClick={this.props.hideDeleteModal}>
                                 Cancel
                             </button>
-                            <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse} >
+                            <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse()}>
                                 Delete
                             </button>
                         </div>
@@ -34,4 +34,6 @@ class DeleteWarehouse extends React.Component {
 }
 
 export default DeleteWarehouse;
+
+{/* <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse(this.props.warehouseID)}></button> */}
 
