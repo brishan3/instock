@@ -75,17 +75,8 @@ class EditInven extends React.Component {
     }
     // Validated
     else {
-      // Grab the warehouseID for later use
-      // axios
-      //   .get(`${process.env.REACT_APP_API_URL}/warehouses`)
-      //   .then((response) => {
-      //     let foundWarehouse = response.data.find(
-      //       (warehouse) => warehouse.name === e.target.warehouse.value
-      //     );
-      // Creating new object from the form
       let newInventory = {
         id: this.state.inventory.id,
-        // warehouseID: foundWarehouse.id,
         warehouseName: e.target.warehouse.value,
         itemName: e.target.itemname.value,
         description: e.target.description.value,
@@ -95,14 +86,15 @@ class EditInven extends React.Component {
       };
       // Make an Edit request to the server
       axios
-        .put(`${process.env.REACT_APP_API_URL}/inventory`, newInventory)
+        .put(
+          `${process.env.REACT_APP_API_URL}/inventory/edit/${this.state.inventory.id}`,
+          newInventory
+        )
         .then((response) => {
           this.setState({ isSubmitted: true });
           e.target.reset();
         })
         .catch((err) => console.log(err));
-      // })
-      // .catch((err) => console.log(err));
     }
   };
 
