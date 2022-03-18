@@ -4,18 +4,18 @@ import chevronIcon from '../../assets/icons/chevron_right-24px.svg'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import { Link } from 'react-router-dom'
 
-function WarehouseInvElement({name, category, status, quantity, id}) {
+function WarehouseInvElement({itemName, category, status, quantity, id}) {
   return (
     <li className="inventory-item body-medium">
       <div className="inventory-item__details">
         <div className="inventory-item__details-block inventory-item__details-block--left">
           <div className="inventory-item__column inventory-item__item">
             <h4 className="inventory-item__label">Inventory item</h4>
-            <Link className="inventory-item__text-block" to={`/inventory/${id}`}>
-              <p className="inventory-item__text inventory-item__text--item">
-                {name}
-              </p>
-              <img className="inventory-item__item-chevron" src={chevronIcon} />
+            <Link className="inventory-item__text-block label" to={`/inventory/${id}`}>
+              <h3 className="inventory-item__text inventory-item__text--item">
+                {itemName}
+              </h3>
+              <img className="inventory-item__item-chevron" src={chevronIcon} alt="Back icon"/>
             </Link>
           </div>
           <div className="inventory-item__column inventory-item__category">
@@ -28,13 +28,13 @@ function WarehouseInvElement({name, category, status, quantity, id}) {
         <div className="inventory-item__details-block inventory-item__details-block--right">
           <div className="inventory-item__column">
             <h4 className="inventory-item__label">Status</h4>
-            {status.toLowerCase() === "in stock" ? 
-              (
-                <h4 className="inventory-item__text inventory-item__stock inventory-item__stock--true">{status}</h4>
-              ) : (
-                <h4 className="inventory-item__text inventory-item__stock">{status}</h4>
-              )
-            }
+            <h4 className=
+                {`
+                  inventory-item__text
+                  inventory-item__stock
+                  ${status.toLowerCase() === "in stock" && "inventory-item__stock--true"}
+                `}
+              >{status}</h4>
           </div>
           <div className="inventory-item__column inventory-item__quantity">
             <h4 className="inventory-item__label">Quantity</h4>

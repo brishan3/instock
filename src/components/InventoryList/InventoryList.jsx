@@ -105,7 +105,7 @@ function InventoryList({ inventories }) {
           </th>
         </tr>
         {inventories.map((inventory) => (
-          <tr className="table__row" key={uuid}>
+          <tr className="table__row" key={uuid()}>
             <td className="table__data name">
               {inventory.itemName}
               <img src={chevronRight} alt="chevron right" />
