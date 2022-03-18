@@ -31,8 +31,35 @@ class Warehouses extends Component {
 
     deleteWarehouse = () => {
         console.log(this.state.toDelete);
-        //axios delete req
+        let currentID = this.state.toDelete.id;
+        axios
+            .delete(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
+            .then((response) => {
+                console.log(response.data);
+                this.setState({
+                    warehouses: response.data,
+                    toDelete:{},
+                    show:false
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
+    //if (response.status === 200) above? 
+    // %% EARLIER ATTEMPT //%%
+    // deleteWarehouse = (id) => {
+    //     const newWarehouseList = this.state.warehouse.filter((warehouse) => {
+    //         return warehouse.id !== id
+    //     });
+    //     axios.delete(`${process.env.REACT_APP_API_URL}/warehouses/${id}`)
+    //     .then((response) => {
+    //         this.setState( { 
+    //             warehouse:response.data
+    //         })
+    //     })
+    // }
+
 
     //fetching API data and setting state when it mounts for the first time
     componentDidMount() {
@@ -63,13 +90,9 @@ class Warehouses extends Component {
                 <DeleteWarehouse 
                     show={this.state.show}
                     hideDeleteModal={this.hideDeleteModal}
-                    warehouses={this.state.warehouses}
                     deleteWarehouse={this.deleteWarehouse}
                     warehouseName={this.state.toDelete.name}
-                    
-
-
-
+                     //warehouseID={this.state.toDelete.id}
                 /> 
             </>
         );
@@ -77,42 +100,3 @@ class Warehouses extends Component {
 }
 
 export default Warehouses;
-
-/* <div className="warehousesPage">
-<div className="warehousesHeader">
-    <h1 className="warehousesHeader__title">Warehouses</h1>
-    <SearchField />
-    <MainButton>
-        <h3 className="warehousesHeader__button">+ Add New Warehouse</h3>
-    </MainButton>                
-</div>
-<WarehousesTable 
-    warehouses={this.state.warehouses}
-/>
-   
-</div> */
-
-
-                    /* <form className="warehousesForm">
-                        <button type="submit" className="warehousesForm__btn">
-                            <img className="warehousesForm__searchIcon" src={this.searchIcon} />
-                        </button>
-                        <input 
-                            type="text" 
-                            name="warehousesSearch" 
-                            placeholder="Search..."
-                            className="warehousesForm__searchInput"
-                            id="warehousesSearchInput"
-                        >
-                        </input>
-                    </form> */
-/* <div>
-                    <ul class="headings__list">
-                        <li class="headings__item">Warehouse</li>
-                        <li class="headings__item">Address</li>
-                        <li class="headings__item">Contact Name </li>
-                        <li class="headings__item">Contact Information </li>
-                        <li class="headings__item">Actions </li>
-                    </ul>
-                    <div class="shows__details"></div>
-                </div> */
