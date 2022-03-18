@@ -8,9 +8,9 @@ function SearchHeader(props) {
       <div className="inventory">
         <h1 className="inventory__title">{props.title}</h1>
         <div className="searchHeader__interactive">
-        {/* </div><div className="inventory__wrapper"> */}
+          {/* </div><div className="inventory__wrapper"> */}
           <SearchField />
-          <MainButton to="/inventory/add">
+          <MainButton to={`/${props.link}/add`}>
             <h3 className="inventory__content btn">{props.content}</h3>
           </MainButton>
         </div>
