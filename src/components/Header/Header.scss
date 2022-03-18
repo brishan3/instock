@@ -34,7 +34,10 @@
     font-weight: 600;
     width: 100%;
     &:hover {
-      border-bottom: 1px solid $global-color;
+      // border-bottom: 1px solid $global-color;
+      text-decoration: underline;
+      text-underline-offset: 0.1rem;
+      text-decoration-thickness: 1px;
     }
     @include tablet {
       font-size: 0.875rem;
