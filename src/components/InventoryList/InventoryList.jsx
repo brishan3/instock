@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 import sortIcon from "../../assets/icons/sort-24px.svg";
 import { Link } from "react-router-dom";
 
-function InventoryList({ inventories }) {
+function InventoryList({ inventories, showDeleteModal }) {
   return (
     <>
       <ul className="items  mobile">
@@ -51,7 +51,13 @@ function InventoryList({ inventories }) {
               </div>
             </div>
             <div className="items__buttons">
-              <button className="items__button">
+              <button
+                className="items__button"
+                type="button"
+                onClick={() => {
+                  showDeleteModal(inventory.name, inventory.id);
+                }}
+              >
                 <img
                   className="items__icon"
                   src={deleteIcon}
@@ -134,7 +140,13 @@ function InventoryList({ inventories }) {
             <td className="table__data">{inventory.quantity}</td>
             <td className="table__data">{inventory.warehouseName}</td>
             <td className="table__data icons">
-              <button className="items__button">
+              <button
+                className="items__button"
+                type="button"
+                onClick={() => {
+                  showDeleteModal(inventory.name, inventory.id);
+                }}
+              >
                 <img
                   className="items__icon"
                   src={deleteIcon}
