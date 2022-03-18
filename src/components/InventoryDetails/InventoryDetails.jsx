@@ -51,7 +51,7 @@ class InventoryDetails extends Component {
                 </h1>
               </div>
               <EditButton
-                route={`/warehouses/edit/${this.state.inventory.id}`}
+                route={`/inventory/edit/${this.state.inventory.id}`}
               />
             </div>
             <div className="inventory-details ">
