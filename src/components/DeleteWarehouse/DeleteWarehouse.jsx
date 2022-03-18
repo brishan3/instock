@@ -1,5 +1,8 @@
 import './DeleteWarehouse.scss';
+import axios from "axios";
 import React from "react";
+import { Link } from "react-router-dom";
+import ReactModal from 'react-modal';
 
 class DeleteWarehouse extends React.Component {
 
@@ -19,7 +22,7 @@ class DeleteWarehouse extends React.Component {
                             <button type="button" className="cancel-btn" onClick={this.props.hideDeleteModal}>
                                 Cancel
                             </button>
-                            <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse} >
+                            <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse}>
                                 Delete
                             </button>
                         </div>
@@ -31,4 +34,6 @@ class DeleteWarehouse extends React.Component {
 }
 
 export default DeleteWarehouse;
+
+{/* <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse(this.props.warehouseID)}></button> */}
 
