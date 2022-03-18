@@ -50,7 +50,7 @@ function InventoryList({ inventories, showDeleteModal }) {
                 <p className="items__warehouse">{inventory.warehouseName}</p>
               </div>
             </div>
-            <div className="items__buttons">
+            <div className="items__buttons btn-space">
               <button
                 className="items__button"
                 type="button"
@@ -80,37 +80,61 @@ function InventoryList({ inventories, showDeleteModal }) {
           <th className="table__header">
             <div className="table__label">
               <h4>inventory item</h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
           <th className="table__header">
             <div className="table__label">
               <h4> category </h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
           <th className="table__header">
             <div className="table__label">
               <h4> status</h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
           <th className="table__header">
             <div className="table__label">
               <h4> qtd</h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
           <th className="table__header">
             <div className="table__label">
               <h4> warehouse</h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
           <th className="table__header">
             <div className="table__label">
               <h4>actions </h4>
-              <img className="column-labels__sort-icon" src={sortIcon} />
+              <img
+                className="column-labels__sort-icon"
+                src={sortIcon}
+                alt="sort icon"
+              />
             </div>
           </th>
         </tr>
