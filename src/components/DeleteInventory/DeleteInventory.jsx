@@ -13,8 +13,7 @@ class DeleteInventory extends React.Component {
           <div className="delete-inventory__wrapper">
             <div className="delete-inventory__container--top">
               <h1 className="delete-inventory__header">
-                {" "}
-                Delete {this.props.inventoryName}?
+                Delete {this.props.inventoryName} inventory item?
               </h1>
               <p className="delete-inventory__text">
                 Please confirm that you'd like to delete the{" "}
@@ -25,14 +24,14 @@ class DeleteInventory extends React.Component {
             <div className="delete-inventory__container--bottom">
               <button
                 type="button"
-                className="cancel-btn"
+                className="delete-inventory__cancel-btn"
                 onClick={this.props.hideDeleteModal}
               >
                 Cancel
               </button>
               <button
                 type="button"
-                className="delete-btn"
+                className="delete-inventory__delete-btn"
                 onClick={this.props.deleteInventory}
               >
                 Delete
