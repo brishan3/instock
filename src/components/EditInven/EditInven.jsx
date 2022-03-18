@@ -69,7 +69,6 @@ class EditInven extends React.Component {
     const categoryField = e.target.category;
     const quantityField = e.target.quantity;
     const warehouseField = e.target.warehouse;
-    console.log(nameField);
     //Validation
     if (
       e.target.itemname.value === "" ||
@@ -87,7 +86,7 @@ class EditInven extends React.Component {
         descField.classList.add("details__input--error");
         descField.nextSibling.style.display = "block";
       }
-      if (e.target.category.value === "") {
+      if (e.target.category.value === "Select") {
         categoryField.classList.add("details__input--error");
         categoryField.nextSibling.style.display = "block";
       }
@@ -95,7 +94,7 @@ class EditInven extends React.Component {
         quantityField.classList.add("details__input--error");
         quantityField.nextSibling.style.display = "block";
       }
-      if (e.target.warehouse.value === "") {
+      if (e.target.warehouse.value === "Select") {
         warehouseField.classList.add("details__input--error");
         warehouseField.nextSibling.style.display = "block";
       }
