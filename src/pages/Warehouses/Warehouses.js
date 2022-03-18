@@ -29,16 +29,18 @@ class Warehouses extends Component {
         this.setState({ show:false, toDelete:{} });
     };
 
-    deleteWarehouse = (id) => {
+    deleteWarehouse = () => {
         console.log(this.state.toDelete);
-        let currentID = this.props.match.params.id;
+        let currentID = this.state.toDelete.id;
         axios
             .delete(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
             .then((response) => {
+                console.log(response.data);
                 this.setState({
-                    warehouse: response.data,
+                    warehouses: response.data,
+                    toDelete:{},
+                    show:false
                 })
-                this.getAllWarehouses()
             })
             .catch((error) => {
                 console.log(error);
@@ -90,7 +92,7 @@ class Warehouses extends Component {
                     hideDeleteModal={this.hideDeleteModal}
                     deleteWarehouse={this.deleteWarehouse}
                     warehouseName={this.state.toDelete.name}
-                    // warehouseID={this.state.toDelete.id}
+                     //warehouseID={this.state.toDelete.id}
                 /> 
             </>
         );

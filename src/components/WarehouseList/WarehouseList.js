@@ -12,7 +12,7 @@ function WarehouseList({ warehouses, showDeleteModal }) {
       <div className="wrapper">
           <div className="column-labels">
             <div className="column-labels__left">
-              <div className="column-labels__column column-labels__item">
+              <div className="column-labels__column column-labels__item1">
                 <h4 className="column-labels__text">Warehouse</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
