@@ -3,6 +3,7 @@ import { Component } from "react";
 import EditButton from '../EditButton/EditButton';
 import { Link } from "react-router-dom";
 import sortIcon from '../../assets/icons/sort-24px.svg';
+import backIcon from '../../assets/icons/arrow_back-24px.svg';
 import axios from 'axios';
 import WarehouseInvElement from '../WarehouseInvElement/WarehouseInvElement';
 
@@ -42,7 +43,6 @@ class WarehouseDetails extends Component {
         this.setState(
           {
             warehouse: res.data,
-            contact: res.data.contact
           }
         )
         this.getInventoryByWarehouseId(currentID);
@@ -57,13 +57,18 @@ class WarehouseDetails extends Component {
   }
 
   render = () => {
-    console.log(this.state.warehouseInventory);
+    // console.log(this.state.warehouseInventory);
     return (
       <>
         {this.state.warehouse.id ? (
           <>
           <div className='details-subheader'>
-            <h2 className='details-subheader__title'>{this.state.warehouse.name}</h2>
+            <div className='details-subheader__block'>
+              <Link className='details-subheader__back-link' to="/">
+                <img className="details-subheader__back-link-icon" src={backIcon} alt="Back arrow"/>
+              </Link>
+              <h1 className='details-subheader__title'>{this.state.warehouse.name}</h1>
+            </div>
             < EditButton route={`/warehouses/edit/${this.state.warehouse.id}`}/>
           </div>
           <div className="details body-medium">

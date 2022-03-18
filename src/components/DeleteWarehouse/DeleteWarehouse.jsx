@@ -1,8 +1,5 @@
 import './DeleteWarehouse.scss';
-import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
-import ReactModal from 'react-modal';
 
 class DeleteWarehouse extends React.Component {
 

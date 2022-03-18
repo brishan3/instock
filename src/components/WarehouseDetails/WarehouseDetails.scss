@@ -3,9 +3,21 @@
 @use "../../styles/partials/fonts" as *;
 
 .details-subheader {
-  padding: 1.35rem;
+  padding: 1.25rem 1rem;
   border-bottom: 1px solid $outline-divider-color;
   @include flexed(row, space-between, center);
+  @include tablet {
+    padding: 1.25rem 2rem;
+  }
+  &__block {
+    @include flexed(row, flex-start, baseline);
+    gap: 0.5rem;
+  }
+  &__back-link {
+    &-icon {
+
+    }
+  }
   &__title {
 
   }
@@ -15,7 +27,7 @@
   padding: 1rem 1.5rem;
   border-bottom: 1px solid $outline-divider-color;
   @include tablet {
-    padding: 1.5rem 1.5rem;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,6 +72,7 @@
   background-color: $page-background-color;
   @include tablet {
     @include flexed(row, space-between, center);
+    padding: 1rem 2rem;
   }
 
   &__left {
