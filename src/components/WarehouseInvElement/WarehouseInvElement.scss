@@ -7,6 +7,7 @@
   border-bottom: 1px solid $outline-divider-color;
   @include tablet {
     @include flexed(row, space-between, center);
+    padding: 1rem 2rem;
   }
   &__details {
     @include flexed(row, space-between, flex-start);
@@ -89,7 +90,7 @@
     }
   }
   &__stock {
-    padding: 0.1rem 0.3rem;
+    padding: 0.2rem 0.5rem;
     width: fit-content;
     border-radius: 20px;
     background-color: $delete-color-opaque;

@@ -84,78 +84,87 @@
 
 //Tablet - Desktop
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  line-height: 22px;
+  display: none;
 
-  &__head {
-    background-color: rgba(247, 248, 249, 0.7);
-    height: 2.5rem;
-  }
+  @include tablet {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 22px;
 
-  &__header {
-    text-align: left;
-    text-transform: uppercase;
-    color: $table-placeholders-color;
-    padding: 0.5rem 0 0.5rem 2rem;
-
-    @include desktop {
-      padding: 1rem 0 1rem 2.5rem;
+    &__head {
+      background-color: rgba(247, 248, 249, 0.7);
+      height: 2.5rem;
     }
-  }
 
-  &__row {
-    border-bottom: 1px solid $outline-divider-color;
+    &__header {
+      text-align: left;
+      text-transform: uppercase;
+      color: $table-placeholders-color;
+      padding: 0.5rem 0 0.5rem 2rem;
 
-    &:hover {
-      background-color: rgba(46, 102, 229, 0.07);
+      @include desktop {
+        padding: 1rem 0 1rem 2.5rem;
+      }
     }
-  }
 
-  &__data {
-    padding: 1rem 0 1rem 2rem;
+    &__row {
+      border-bottom: 1px solid $outline-divider-color;
 
-    @include desktop {
-      padding: 1rem 0 0 1rem 2.5rem;
+      &:hover {
+        background-color: rgba(46, 102, 229, 0.07);
+      }
     }
-  }
 
-  .name {
-    font-weight: $semi-bold;
-    color: $interactive-color;
-    display: flex;
-    cursor: pointer;
-  }
+    &__data {
+      padding: 1rem 0 1rem 2rem;
 
-  &__tag {
-    height: 26px;
-    width: 92px;
-    border-radius: 20px;
-  }
-  &__status {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    line-height: 1.125rem;
-    text-align: center;
-    padding: 4px;
-  }
+      @include desktop {
+        padding: 1rem 0 0 1rem 2.5rem;
+      }
+    }
 
-  &__green {
-    width: 4.0625rem;
-    color: $label-color;
-    background-color: rgb(21 132 99 / 7%);
-  }
+    .name {
+      font-weight: $semi-bold;
+      color: $interactive-color;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
 
-  &__red {
-    color: $delete-color;
-    background-color: rgb(201 69 21 / 7%);
-  }
+    &__tag {
+      border-radius: 20px;
+    }
 
-  &__label {
-    display: flex;
-    flex-direction: row;
-    gap: 0.3125rem;
-    align-items: center;
+    &__status {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      text-align: center;
+      padding: 4px;
+      font-weight: $semi-bold;
+    }
+
+    &__green {
+      width: 4.0625rem;
+      height: 1.75rem;
+      color: $label-color;
+      background-color: rgb(21 132 99 / 7%);
+    }
+
+    &__red {
+      height: 1.75rem;
+      width: 5.375rem;
+      color: $delete-color;
+      background-color: rgb(201 69 21 / 7%);
+    }
+
+    &__label {
+      display: flex;
+      flex-direction: row;
+      gap: 0.3125rem;
+      align-items: center;
+    }
   }
 }

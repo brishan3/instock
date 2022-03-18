@@ -18,8 +18,15 @@ class EditWarehouse extends React.Component {
     position: "",
     phone: "",
     email: "",
-
-
+    whnamevalid: "",
+    addressvalid: "",
+    cityvalid: "",
+    countryvalid: "",
+    namevalid: "",
+    positionvalid: "",
+    phonevalid: "",
+    emailvalid: "",
+    formvalid: true,
   };
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
@@ -46,80 +53,123 @@ class EditWarehouse extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    const whName = e.target.whName;
-    const address = e.target.address;
-    const city = e.target.city;
-    const country = e.target.country;
-    const name = e.target.name;
-    const position = e.target.position;
-    const phone = e.target.phone;
-    const email = e.target.email;
-
-    if (!whName.value.trim()) {
-      whName.focus();
-      whName.classList.add("details__input--error");
-      whName.nextSibling.style.display = "block";
-    } else if (!address.value.trim()) {
-      address.focus();
-      address.classList.add("details__input--error");
-      address.nextSibling.style.display = "block";
-    } else if (!city.value.trim()) {
-      city.focus();
-      city.classList.add("details__input--error");
-      city.nextSibling.style.display = "block";
-    } else if (!country.value.trim()) {
-      country.focus();
-      country.classList.add("details__input--error");
-      country.nextSibling.style.display = "block";
-    } else if (!name.value.trim()) {
-      name.focus();
-      name.classList.add("details__input--error");
-      name.nextSibling.style.display = "block";
-    } else if (!position.value.trim()) {
-      position.focus();
-      position.classList.add("details__input--error");
-      position.nextSibling.style.display = "block";
-    } else if (!phone.value.trim()) {
-      phone.focus();
-      phone.classList.add("details__input--error");
-      phone.nextSibling.style.display = "block";
-    } else if (!email.value.trim()) {
-      email.focus();
-      email.classList.add("details__input--error");
-      email.nextSibling.style.display = "block";
-    } else {
-      const updateWarehouse = {
-        whname: whName.value,
-        address: address.value,
-        city: city.value,
-        country: country.value,
-        name: name.value,
-        position: position.value,
-        phone: phone.value,
-        email: email.value,
-      };
-
-      const editWarehouse = axios.put(
-        `${process.env.REACT_APP_API_URL}/warehouses/${this.state.id}`,
-        updateWarehouse
-      );
-      editWarehouse
-        .then((res) => {
-          window.alert(res.data);
-          this.props.history.push(`/warehouses/${this.state.id}`)
-        })
-        .catch((err) => {
-          window.alert(err);
-        });
+    let currentID = this.props.match.params.id;
+    if (this.state.formvalid) {
+      const updatedData = {
+        whname: this.state.whname,
+        address: this.state.address,
+        city: this.state.city,
+        country: this.state.country,
+        name: this.state.name,
+        position:this.state.position,
+        phone: this.state.phone,
+        email: this.state.email
+      }
+      const updateWarehouse = axios.put(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`, updatedData)
+      updateWarehouse
+      .then((res)=>{
+        window.alert(res.data);
+        this.props.history.push(`/warehouses/${currentID}`)
+      })
+      .catch((error)=> {
+        window.alert(error);
+      })
     }
+
   };
 
   handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      () => {
+        this.validateField(event.target, event.target.value);
+      }
+    );
   };
+  validateField(field, value) {
+    let whnamevalidation = this.state.whnamevalid;
+    let addressvalidation = this.state.addressvalid;
+    let cityvalidation = this.state.cityvalid;
+    let countryvalidation = this.state.countryvalid;
+    let namevalidation = this.state.namevalid;
+    let positionvalidation = this.state.positionvalid;
+    let phonevalidation = this.state.phonevalid;
+    let emailvalidation = this.state.emailvalid;
+    const re = /^[a-zA-Z]/;
+    const emailRe = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const addRe = /[A-za-z0–9_]/
+    const phoneRe = /^[0-9]{11}$/
+    switch (field.name) {
+      case "whname":
+        whnamevalidation = re.test(value);
+        this.showInputError(field, whnamevalidation);
+        break;
+      case "address":
+        addressvalidation = addRe.test(value);
+        this.showInputError(field, addressvalidation);
+        break;
+      case "city":
+        cityvalidation = re.test(value);
+        this.showInputError(field, cityvalidation);
+        break;
+      case "country":
+        countryvalidation = re.test(value);
+        this.showInputError(field, countryvalidation);
+        break;
+      case "name":
+        namevalidation = re.test(value);
+        this.showInputError(field, namevalidation);
+        break;
+      case "position":
+        positionvalidation = re.test(value);
+        this.showInputError(field, positionvalidation);
+        break;
+      case "phone":
+        const phonetrim = value.replace(/\D/g, "")
+        phonevalidation = phoneRe.test(phonetrim);
+        this.showInputError(field, phonevalidation);
+  
+        break;
+      case "email":
+        emailvalidation = emailRe.test(value);
+        this.showInputError(field, emailvalidation);
+        break;
+      default:
+        break;
+    }
+    this.setState(
+      {
+        whnamevalid: whnamevalidation,
+        addressvalid: addressvalidation,
+        cityvalid: cityvalidation,
+        countryvalid: countryvalidation,
+        namevalid: namevalidation,
+        positionvalid: positionvalidation,
+        phonevalid: phonevalidation,
+        emailvalid: emailvalidation,
+      }
+    );
+  }
 
+
+  showInputError(field, status) {
+    if (!status) {
+      field.classList.add("details__input--error");
+      field.nextSibling.style.display = "block";
+      this.setState({
+        formvalid: false
+      })
+    } else {
+      field.classList.remove("details__input--error");
+      field.nextSibling.style.display = "none";
+      this.setState({
+        formvalid: true
+      })
+
+    }
+  }
   componentDidMount() {
     this.getWarehouseById();
   }

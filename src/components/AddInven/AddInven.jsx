@@ -8,7 +8,7 @@ class AddInven extends React.Component {
   state = {
     isSubmitted: false,
     error: false,
-    status: "instock",
+    status: "In Stock",
   };
 
   onChangeHandler = (e) => {
@@ -129,7 +129,7 @@ class AddInven extends React.Component {
                   type="radio"
                   id="instock"
                   name="status"
-                  value="instock"
+                  value="In Stock"
                   defaultChecked
                   onChange={this.onChangeHandler}
                 />
@@ -140,7 +140,7 @@ class AddInven extends React.Component {
                   type="radio"
                   id="outofstock"
                   name="status"
-                  value="outofstock"
+                  value="Out of Stock"
                   onChange={this.onChangeHandler}
                 />
                 <label htmlFor="outofstock" className="radio-btn">
@@ -150,7 +150,7 @@ class AddInven extends React.Component {
               <label
                 htmlFor="name"
                 className={`details__label ${
-                  this.state.status === "outofstock"
+                  this.state.status === "Out of Stock"
                     ? "details__label--none"
                     : ""
                 }`}
@@ -160,7 +160,7 @@ class AddInven extends React.Component {
               <input
                 type="text"
                 className={`details__input details__input--quantity ${
-                  this.state.status === "outofstock"
+                  this.state.status === "Out of Stock"
                     ? "details__input--none"
                     : ""
                 }`}
