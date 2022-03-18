@@ -36,3 +36,10 @@
         }
     }
 }
+#add-btn {
+    width: 45%;
+    @include tablet {
+        width: 8.625rem;
+    }
+    
+}

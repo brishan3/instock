@@ -61,21 +61,24 @@ class EditWarehouse extends React.Component {
         city: this.state.city,
         country: this.state.country,
         name: this.state.name,
-        position:this.state.position,
+        position: this.state.position,
         phone: this.state.phone,
-        email: this.state.email
-      }
-      const updateWarehouse = axios.put(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`, updatedData)
-      updateWarehouse
-      .then((res)=>{
-        window.alert(res.data);
-        this.props.history.push(`/warehouses/${currentID}`)
-      })
-      .catch((error)=> {
-        window.alert(error);
-      })
-    }
+        email: this.state.email,
+      };
 
+      const updateWarehouse = axios.put(
+        `${process.env.REACT_APP_API_URL}/warehouses/${currentID}`,
+        updatedData
+      );
+      updateWarehouse
+        .then((res) => {
+          window.alert(res.data);
+          this.props.history.push(`/warehouses/${currentID}`);
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+    }
   };
 
   handleChange = (event) => {
@@ -99,8 +102,8 @@ class EditWarehouse extends React.Component {
     let emailvalidation = this.state.emailvalid;
     const re = /^[a-zA-Z]/;
     const emailRe = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    const addRe = /[A-za-z0–9_]/
-    const phoneRe = /^[0-9]{11}$/
+    const addRe = /[A-za-z0–9_]/;
+    const phoneRe = /^[0-9]{11}$/;
     switch (field.name) {
       case "whname":
         whnamevalidation = re.test(value);
@@ -127,10 +130,10 @@ class EditWarehouse extends React.Component {
         this.showInputError(field, positionvalidation);
         break;
       case "phone":
-        const phonetrim = value.replace(/\D/g, "")
+        const phonetrim = value.replace(/\D/g, "");
         phonevalidation = phoneRe.test(phonetrim);
         this.showInputError(field, phonevalidation);
-  
+
         break;
       case "email":
         emailvalidation = emailRe.test(value);
@@ -139,35 +142,31 @@ class EditWarehouse extends React.Component {
       default:
         break;
     }
-    this.setState(
-      {
-        whnamevalid: whnamevalidation,
-        addressvalid: addressvalidation,
-        cityvalid: cityvalidation,
-        countryvalid: countryvalidation,
-        namevalid: namevalidation,
-        positionvalid: positionvalidation,
-        phonevalid: phonevalidation,
-        emailvalid: emailvalidation,
-      }
-    );
+    this.setState({
+      whnamevalid: whnamevalidation,
+      addressvalid: addressvalidation,
+      cityvalid: cityvalidation,
+      countryvalid: countryvalidation,
+      namevalid: namevalidation,
+      positionvalid: positionvalidation,
+      phonevalid: phonevalidation,
+      emailvalid: emailvalidation,
+    });
   }
-
 
   showInputError(field, status) {
     if (!status) {
       field.classList.add("details__input--error");
       field.nextSibling.style.display = "block";
       this.setState({
-        formvalid: false
-      })
+        formvalid: false,
+      });
     } else {
       field.classList.remove("details__input--error");
       field.nextSibling.style.display = "none";
       this.setState({
-        formvalid: true
-      })
-
+        formvalid: true,
+      });
     }
   }
   componentDidMount() {
@@ -178,7 +177,9 @@ class EditWarehouse extends React.Component {
     return (
       <div className="box-shadow">
         <div className="edit-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/warehouses">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Edit Warehouse</h2>
         </div>
         <form

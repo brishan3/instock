@@ -3,211 +3,326 @@ import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
 import error from "../../assets/icons/error-24px.svg";
 import axios from "axios";
+import React from "react";
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  const whName = e.target.whName;
-  const address = e.target.address;
-  const city = e.target.city;
-  const country = e.target.country;
-  const name = e.target.name;
-  const position = e.target.position;
-  const phone = e.target.phone;
-  const email = e.target.email;
+class AddWarehouse extends React.Component {
+  state = {
+    id: "",
+    whname: "",
+    address: "",
+    city: "",
+    country: "",
+    name: "",
+    position: "",
+    phone: "",
+    email: "",
+    whnamevalid: false,
+    addressvalid: false,
+    cityvalid: false,
+    countryvalid: false,
+    namevalid: false,
+    positionvalid: false,
+    phonevalid: false,
+    emailvalid: false,
+    formvalid: false,
+    submit: false,
+  };
 
-  if (!whName.value.trim()) {
-    whName.focus();
-    whName.classList.add("details__input--error");
-    whName.nextSibling.style.display = "block";
-  } else if (!address.value.trim()) {
-    address.focus();
-    address.classList.add("details__input--error");
-    address.nextSibling.style.display = "block";
-  } else if (!city.value.trim()) {
-    city.focus();
-    city.classList.add("details__input--error");
-    city.nextSibling.style.display = "block";
-  } else if (!country.value.trim()) {
-    country.focus();
-    country.classList.add("details__input--error");
-    country.nextSibling.style.display = "block";
-  } else if (!name.value.trim()) {
-    name.focus();
-    name.classList.add("details__input--error");
-    name.nextSibling.style.display = "block";
-  } else if (!position.value.trim()) {
-    position.focus();
-    position.classList.add("details__input--error");
-    position.nextSibling.style.display = "block";
-  } else if (!phone.value.trim()) {
-    phone.focus();
-    phone.classList.add("details__input--error");
-    phone.nextSibling.style.display = "block";
-  } else if (!email.value.trim()) {
-    email.focus();
-    email.classList.add("details__input--error");
-    email.nextSibling.style.display = "block";
-  } else {
-    const newWarehouse = {
-      whname: whName.value,
-      address: address.value,
-      city: city.value,
-      country: country.value,
-      name: name.value,
-      position: position.value,
-      phone: phone.value,
-      email: email.value,
-    };
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      submit:true
+    })
+    console.log("button clicked");
+    console.log(this.state.submit);
+    if (this.state.formvalid) {
+      const newWarehouse = {
+        whname: this.state.whname,
+        address: this.state.address,
+        city: this.state.city,
+        country: this.state.country,
+        name: this.state.name,
+        position: this.state.position,
+        phone: this.state.phone,
+        email: this.state.email,
+      };
 
-    const addWarehouse = axios.post(
-      `${process.env.REACT_APP_API_URL}/warehouses`,
-      newWarehouse
-    );
-    addWarehouse
-      .then((res) => {
-        window.alert(res.data);
-      })
-      .catch((err) => {
-        window.alert(err);
+      const addWarehouse = axios.post(
+        `${process.env.REACT_APP_API_URL}/warehouses`,
+        newWarehouse
+      );
+      addWarehouse
+        .then((res) => {
+          window.alert(res.data);
+        })
+        .catch((err) => {
+          window.alert(err);
+        });
+    } else {
+      this.setState({
+        whnamevalid: false,
+        addressvalid: false,
+        cityvalid: false,
+        countryvalid: false,
+        namevalid: false,
+        positionvalid: false,
+        phonevalid: false,
+        emailvalid: false,
       });
-  }
-};
+    }
+  };
 
-export default function EditWarehouse() {
-  return (
-    <div className="box-shadow">
-      <div className="edit-inven__subheader">
-        <img src={backArrow} alt="back arrow" className="back-icon" />
-        <h2 className="subheader__text">Add New Warehouse</h2>
-      </div>
-      <form
-        className="edit-inven__details"
-        id="warehouse-form"
-        onSubmit={handleSubmit}
-      >
-        <div className="details__container">
-          <h3 className="details__subheader">Warehouse Details</h3>
-          <div className="details__form">
-            <label htmlFor="whName" className="details__label">
-              Warehouse Name
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Warehouse Name"
-              id="whName"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="address" className="details__label">
-              Street Address
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Street Address"
-              id="address"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="city" className="details__label">
-              City
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="City"
-              id="city"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="country" className="details__label">
-              Country
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Country"
-              id="country"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-          </div>
+  handleChange = (event) => {
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      () => {
+        this.validateField(event.target, event.target.value);
+      }
+    );
+  };
+  validateField(field, value) {
+    let whnamevalidation = this.state.whnamevalid;
+    let addressvalidation = this.state.addressvalid;
+    let cityvalidation = this.state.cityvalid;
+    let countryvalidation = this.state.countryvalid;
+    let namevalidation = this.state.namevalid;
+    let positionvalidation = this.state.positionvalid;
+    let phonevalidation = this.state.phonevalid;
+    let emailvalidation = this.state.emailvalid;
+    const re = /^[a-zA-Z]/;
+    const emailRe = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const addRe = /[A-za-z0–9_]/;
+    const phoneRe = /^[0-9]{11}$/;
+    switch (field.name) {
+      case "whname":
+        whnamevalidation = re.test(value);
+        this.showInputError(field, whnamevalidation);
+        break;
+      case "address":
+        addressvalidation = addRe.test(value);
+        this.showInputError(field, addressvalidation);
+        break;
+      case "city":
+        cityvalidation = re.test(value);
+        this.showInputError(field, cityvalidation);
+        break;
+      case "country":
+        countryvalidation = re.test(value);
+        this.showInputError(field, countryvalidation);
+        break;
+      case "name":
+        namevalidation = re.test(value);
+        this.showInputError(field, namevalidation);
+        break;
+      case "position":
+        positionvalidation = re.test(value);
+        this.showInputError(field, positionvalidation);
+        break;
+      case "phone":
+        const phonetrim = value.replace(/\D/g, "");
+        phonevalidation = phoneRe.test(phonetrim);
+        this.showInputError(field, phonevalidation);
+
+        break;
+      case "email":
+        emailvalidation = emailRe.test(value);
+        this.showInputError(field, emailvalidation);
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      whnamevalid: whnamevalidation,
+      addressvalid: addressvalidation,
+      cityvalid: cityvalidation,
+      countryvalid: countryvalidation,
+      namevalid: namevalidation,
+      positionvalid: positionvalidation,
+      phonevalid: phonevalidation,
+      emailvalid: emailvalidation,
+    });
+  }
+
+  showInputError(field, status) {
+    if (!status) {
+      field.classList.add("details__input--error");
+      field.nextSibling.style.display = "block";
+      this.setState({
+        formvalid: false,
+      });
+    } else {
+      field.classList.remove("details__input--error");
+      field.nextSibling.style.display = "none";
+      this.setState({
+        formvalid: true,
+      });
+    }
+  }
+  
+
+  render() {
+    return (
+      <div className="box-shadow">
+        <div className="edit-inven__subheader">
+          <Link to="/warehouses">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
+          <h2 className="subheader__text">Add New Warehouse</h2>
         </div>
-        <div className="details__container">
-          <h3 className="details__subheader">Contact Details</h3>
-          <div className="details__form">
-            <label htmlFor="name" className="details__label">
-              Contact Name
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Warehouse Name"
-              id="name"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="position" className="details__label">
-              Position
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Street Address"
-              id="position"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="phone" className="details__label">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Phone Number"
-              id="phone"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
-            <label htmlFor="email" className="details__label">
-              Email
-            </label>
-            <input
-              type="text"
-              className="details__input"
-              placeholder="Email"
-              id="email"
-            />
-            <p className="details__err">
-              <img className="details__err--img" src={error} alt="error" /> This
-              field is required
-            </p>
+        <form
+          className="edit-inven__details"
+          id="warehouse-form"
+          onSubmit={this.handleSubmit}
+        >
+          <div className="details__container">
+            <h3 className="details__subheader">Warehouse Details</h3>
+            <div className="details__form">
+              <label htmlFor="whname" className="details__label">
+                Warehouse Name
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Warehouse Name"
+                id="whname"
+                name="whname"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="address" className="details__label">
+                Street Address
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Street Address"
+                id="address"
+                name="address"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="city" className="details__label">
+                City
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="City"
+                id="city"
+                name="city"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="country" className="details__label">
+                Country
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Country"
+                id="country"
+                name="country"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+            </div>
           </div>
-        </div>
-      </form>
-      <div className="buttons">
-      <Link to="/warehouses" className="cancel-btn">
+          <div className="details__container">
+            <h3 className="details__subheader">Contact Details</h3>
+            <div className="details__form">
+              <label htmlFor="name" className="details__label">
+                Contact Name
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Name"
+                id="name"
+                name="name"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="position" className="details__label">
+                Position
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Position"
+                id="position"
+                name="position"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="phone" className="details__label">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Phone Number"
+                id="phone"
+                name="phone"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+              <label htmlFor="email" className="details__label">
+                Email
+              </label>
+              <input
+                type="text"
+                className="details__input"
+                placeholder="Email"
+                id="email"
+                name="email"
+                onChange={this.handleChange}
+              />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
+            </div>
+          </div>
+        </form>
+        <div className="buttons">
+          <Link to="/warehouses" className="cancel-btn">
             Cancel
           </Link>
-        <button type="submit" form="warehouse-form" className="save-btn">
-          +Add Warehouse
-        </button>
+          <button
+            type="submit"
+            form="warehouse-form"
+            className="save-btn"
+            id="add-btn"
+          >
+            +Add Warehouse
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default AddWarehouse;
