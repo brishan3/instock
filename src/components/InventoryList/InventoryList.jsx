@@ -4,8 +4,9 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import chevronRight from "../../assets/icons/chevron_right-24px.svg";
 import { v4 as uuid } from "uuid";
 import sortIcon from "../../assets/icons/sort-24px.svg";
+import { Link } from "react-router-dom";
 
-function InventoryList({ inventories }) {
+function InventoryList({ inventories, showDeleteModal }) {
   return (
     <>
       <ul className="items  mobile">
@@ -14,10 +15,10 @@ function InventoryList({ inventories }) {
             <div className="items__wrapper">
               <div className="items__content">
                 <h4 className="items__header">inventory item</h4>
-                <p className="items__name">
+                <Link to={`/inventory/${inventory.id}`} className="items__name">
                   {inventory.itemName}
                   <img src={chevronRight} alt="chevron right" />
-                </p>
+                </Link>
               </div>
               <div className="items__content">
                 <h4 className="items__header">status</h4>
@@ -50,16 +51,25 @@ function InventoryList({ inventories }) {
               </div>
             </div>
             <div className="items__buttons">
-              <button className="items__button">
+              <button
+                className="items__button"
+                type="button"
+                onClick={() => {
+                  showDeleteModal(inventory.name, inventory.id);
+                }}
+              >
                 <img
                   className="items__icon"
                   src={deleteIcon}
                   alt="delete-icon"
                 />
               </button>
-              <button className="items__button">
+              <Link
+                to={`/inventory/edit/${inventory.id}`}
+                className="items__button"
+              >
                 <img className="items__icon" src={editIcon} alt="edit-icon" />
-              </button>
+              </Link>
             </div>
           </li>
         ))}
@@ -106,9 +116,14 @@ function InventoryList({ inventories }) {
         </tr>
         {inventories.map((inventory) => (
           <tr className="table__row" key={uuid}>
-            <td className="table__data name">
-              {inventory.itemName}
-              <img src={chevronRight} alt="chevron right" />
+            <td>
+              <Link
+                to={`/inventory/${inventory.id}`}
+                className="table__data name"
+              >
+                {inventory.itemName}
+                <img src={chevronRight} alt="chevron right" />
+              </Link>
             </td>
             <td className="table__data">{inventory.category}</td>
             <td className="table__data">
@@ -125,16 +140,25 @@ function InventoryList({ inventories }) {
             <td className="table__data">{inventory.quantity}</td>
             <td className="table__data">{inventory.warehouseName}</td>
             <td className="table__data icons">
-              <button className="items__button">
+              <button
+                className="items__button"
+                type="button"
+                onClick={() => {
+                  showDeleteModal(inventory.name, inventory.id);
+                }}
+              >
                 <img
                   className="items__icon"
                   src={deleteIcon}
                   alt="delete-icon"
                 />
               </button>
-              <button className="items__button">
+              <Link
+                to={`/inventory/edit/${inventory.id}`}
+                className="items__button"
+              >
                 <img className="items__icon" src={editIcon} alt="edit-icon" />
-              </button>
+              </Link>
             </td>
           </tr>
         ))}
