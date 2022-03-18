@@ -54,7 +54,7 @@ function InventoryList({ inventories, showDeleteModal }) {
                 className="items__button"
                 type="button"
                 onClick={() => {
-                  showDeleteModal(inventory.name, inventory.id);
+                  showDeleteModal(inventory.itemName, inventory.id);
                 }}
               >
                 <img
@@ -170,7 +170,7 @@ function InventoryList({ inventories, showDeleteModal }) {
                   className="items__button"
                   type="button"
                   onClick={() => {
-                    showDeleteModal(inventory.name, inventory.id);
+                    showDeleteModal(inventory.itemName, inventory.id);
                   }}
                 >
                   <img
