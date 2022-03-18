@@ -2,6 +2,7 @@ import "./EditInven.scss";
 import React from "react";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
+import error from "../../assets/icons/error-24px.svg";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 class EditInven extends React.Component {
@@ -63,6 +64,12 @@ class EditInven extends React.Component {
 
   saveHandler = (e) => {
     e.preventDefault();
+    const nameField = e.target.itemname;
+    const descField = e.target.description;
+    const categoryField = e.target.category;
+    const quantityField = e.target.quantity;
+    const warehouseField = e.target.warehouse;
+    console.log(nameField);
     //Validation
     if (
       e.target.itemname.value === "" ||
@@ -72,6 +79,26 @@ class EditInven extends React.Component {
       e.target.warehouse.value === "Select"
     ) {
       this.setState({ error: true });
+      if (e.target.itemname.value === "") {
+        nameField.classList.add("details__input--error");
+        nameField.nextSibling.style.display = "block";
+      }
+      if (e.target.description.value === "") {
+        descField.classList.add("details__input--error");
+        descField.nextSibling.style.display = "block";
+      }
+      if (e.target.category.value === "") {
+        categoryField.classList.add("details__input--error");
+        categoryField.nextSibling.style.display = "block";
+      }
+      if (e.target.quantity.value === "") {
+        quantityField.classList.add("details__input--error");
+        quantityField.nextSibling.style.display = "block";
+      }
+      if (e.target.warehouse.value === "") {
+        warehouseField.classList.add("details__input--error");
+        warehouseField.nextSibling.style.display = "block";
+      }
     }
     // Validated
     else {
@@ -131,6 +158,10 @@ class EditInven extends React.Component {
                 onChange={this.onChangeName}
                 value={this.state.inventory.itemName}
               />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
               <label htmlFor="description" className="details__label">
                 Description
               </label>
@@ -143,6 +174,10 @@ class EditInven extends React.Component {
                 onChange={this.onChangeDescription}
                 value={this.state.inventory.description}
               ></textarea>
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
               <label htmlFor="category" className="details__label">
                 Category
               </label>
@@ -161,6 +196,10 @@ class EditInven extends React.Component {
                   <option value="Accessories">Accessories</option>
                   <option value="Health">Health</option>
                 </select>
+                <p className="details__err">
+                  <img className="details__err--img" src={error} alt="error" />{" "}
+                  This field is required
+                </p>
               </div>
             </div>
           </div>
@@ -217,6 +256,10 @@ class EditInven extends React.Component {
                 name="quantity"
                 value={this.state.inventory.quantity}
               />
+              <p className="details__err">
+                <img className="details__err--img" src={error} alt="error" />{" "}
+                This field is required
+              </p>
               <label htmlFor="warehouse" className="details__label">
                 Warehouse
               </label>
@@ -238,6 +281,10 @@ class EditInven extends React.Component {
                   <option value="Miami">Miami</option>
                   <option value="Boston">Boston</option>
                 </select>
+                <p className="details__err">
+                  <img className="details__err--img" src={error} alt="error" />{" "}
+                  This field is required
+                </p>
               </div>
             </div>
           </div>
