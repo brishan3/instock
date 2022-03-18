@@ -195,8 +195,8 @@ class AddInven extends React.Component {
           <Link to="/inventory" className="cancel-btn">
             Cancel
           </Link>
-          <button type="submit" form="form" className="add-btn save-btn">
-            Save
+          <button type="submit" form="form" className="add-btn add-inventory">
+            + Add Item
           </button>
         </div>
       </div>
