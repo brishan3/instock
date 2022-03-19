@@ -10,7 +10,7 @@ import EditWarehouse from "./components/EditWarehouse/EditWarehouse.jsx";
 import InventoryDetails from "./components/InventoryDetails/InventoryDetails";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
-import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
+// import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
 
 function App() {
   return (
