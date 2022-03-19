@@ -1,6 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/colors" as *;
-.save-btn {
+#add-warehouse {
   @include tablet {
     width: 138px;
   }
@@ -34,5 +34,28 @@
     &--img {
       height: 13px;
     }
-  }
+    &__input {
+        margin-bottom: 0;
+        outline: none;
+        &--error{
+            border: 1px solid $delete-color;
+            &:focus{
+                border: 2px solid $delete-color;
+            }
+        }
+    }
+    &__label {
+        padding-top: 1rem;
+    }
+    &__err {
+        display: none;
+        font-size: .75rem;
+        color: #C94515;
+        &--img {
+            height: 13px;
+        }
+    }
 }
+
+}
+

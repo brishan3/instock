@@ -28,13 +28,14 @@ class EditWarehouse extends React.Component {
     emailvalid: "",
     formvalid: true,
   };
+  // function gets id of the warehouse and send a get axios request
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
     // console.log(currentID);
     axios
       .get(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
       .then((res) => {
-        // console.log(res.data);
+        // if the axios request is successful the component is updated and data is updated in fields accordingly
         this.setState({
           id: res.data.id,
           whname: res.data.name,
@@ -61,23 +62,26 @@ class EditWarehouse extends React.Component {
         city: this.state.city,
         country: this.state.country,
         name: this.state.name,
-        position:this.state.position,
+        position: this.state.position,
         phone: this.state.phone,
-        email: this.state.email
-      }
-      const updateWarehouse = axios.put(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`, updatedData)
+        email: this.state.email,
+      };
+
+      const updateWarehouse = axios.put(
+        `${process.env.REACT_APP_API_URL}/warehouses/${currentID}`,
+        updatedData
+      );
       updateWarehouse
-      .then((res)=>{
-        window.alert(res.data);
-        this.props.history.push(`/warehouses/${currentID}`)
-      })
-      .catch((error)=> {
-        window.alert(error);
-      })
+        .then((res) => {
+          window.alert(res.data);
+          this.props.history.push(`/warehouses/${currentID}`);
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
     }
-
   };
-
+//any input change is updated and field validation is called to check if input is in acceptable format
   handleChange = (event) => {
     this.setState(
       {
@@ -88,6 +92,7 @@ class EditWarehouse extends React.Component {
       }
     );
   };
+  //takes in field and its value to check if value is in acceptable format according to the field
   validateField(field, value) {
     let whnamevalidation = this.state.whnamevalid;
     let addressvalidation = this.state.addressvalid;
@@ -99,8 +104,8 @@ class EditWarehouse extends React.Component {
     let emailvalidation = this.state.emailvalid;
     const re = /^[a-zA-Z]/;
     const emailRe = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-    const addRe = /[A-za-z0–9_]/
-    const phoneRe = /^[0-9]{11}$/
+    const addRe = /[A-za-z0–9_]/;
+    const phoneRe = /^[0-9]{11}$/;
     switch (field.name) {
       case "whname":
         whnamevalidation = re.test(value);
@@ -127,10 +132,10 @@ class EditWarehouse extends React.Component {
         this.showInputError(field, positionvalidation);
         break;
       case "phone":
-        const phonetrim = value.replace(/\D/g, "")
+        const phonetrim = value.replace(/\D/g, "");
         phonevalidation = phoneRe.test(phonetrim);
         this.showInputError(field, phonevalidation);
-  
+
         break;
       case "email":
         emailvalidation = emailRe.test(value);
@@ -139,34 +144,39 @@ class EditWarehouse extends React.Component {
       default:
         break;
     }
-    this.setState(
-      {
-        whnamevalid: whnamevalidation,
-        addressvalid: addressvalidation,
-        cityvalid: cityvalidation,
-        countryvalid: countryvalidation,
-        namevalid: namevalidation,
-        positionvalid: positionvalidation,
-        phonevalid: phonevalidation,
-        emailvalid: emailvalidation,
-      }
-    );
+    //once the field input is validated the status is updated in state and function is called to validate form accordingly
+    this.setState({
+      whnamevalid: whnamevalidation,
+      addressvalid: addressvalidation,
+      cityvalid: cityvalidation,
+      countryvalid: countryvalidation,
+      namevalid: namevalidation,
+      positionvalid: positionvalidation,
+      phonevalid: phonevalidation,
+      emailvalid: emailvalidation,
+    }, this.validateForm);
   }
-
-
+    //checks if the form is valid after every changed in the field and updates the status
+    validateForm() {
+      this.setState({
+        formvalid: this.state.addressvalid &&
+        this.state.whnamevalid &&
+        this.state.cityvalid &&
+        this.state.countryvalid &&
+        this.state.namevalid &&
+        this.state.positionvalid &&
+        this.state.phonevalid &&
+        this.state.emailvalid
+      })
+    }
   showInputError(field, status) {
     if (!status) {
       field.classList.add("details__input--error");
       field.nextSibling.style.display = "block";
-      this.setState({
-        formvalid: false
-      })
+
     } else {
       field.classList.remove("details__input--error");
       field.nextSibling.style.display = "none";
-      this.setState({
-        formvalid: true
-      })
 
     }
   }
@@ -178,7 +188,9 @@ class EditWarehouse extends React.Component {
     return (
       <div className="box-shadow">
         <div className="edit-inven__subheader">
-          <img src={backArrow} alt="back arrow" className="back-icon" />
+          <Link to="/warehouses">
+            <img src={backArrow} alt="back arrow" className="back-icon" />
+          </Link>
           <h2 className="subheader__text">Edit Warehouse</h2>
         </div>
         <form
