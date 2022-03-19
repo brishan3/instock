@@ -3,9 +3,9 @@ import './Footer.scss';
 
 function Footer() {
   return (
-    <header className="Footer">
-        <p>Footer here</p>
-    </header>
+    <footer className="footer">
+        <p>&copy; InStock Inc. All Rights Reserved</p>
+    </footer>
   );
 }
 
