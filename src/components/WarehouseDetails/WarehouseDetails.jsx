@@ -6,13 +6,41 @@ import EditButton from '../EditButton/EditButton';
 import sortIcon from '../../assets/icons/sort-24px.svg';
 import backIcon from '../../assets/icons/arrow_back-24px.svg';
 import WarehouseInvElement from '../WarehouseInvElement/WarehouseInvElement';
+import DeleteInventory from '../DeleteInventory/DeleteInventory';
 
 
 class WarehouseDetails extends Component {
   state = {
     warehouse: {},
-    warehouseInventory: []
+    warehouseInventory: [],
+    show: false,
+    toDelete: {},
   }
+
+  showDeleteModal = (name, id) => {
+    this.setState({ show: true, toDelete: { name: name, id: id } });
+  };
+
+  hideDeleteModal = () => {
+    this.setState({ show: false, toDelete: {} });
+  };
+
+  //Function to delete a single inventory
+  deleteInventory = () => {
+    let currentId = this.state.toDelete.id;
+    return axios
+      .delete(`${process.env.REACT_APP_API_URL}/inventory/${currentId}`)
+      .then((response) => {
+        this.setState({
+          toDelete: {},
+          show: false,
+        });
+        this.getInventoryByWarehouseId();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   getInventoryByWarehouseId = () => {
     let currentID = this.props.match.params.id;
@@ -120,10 +148,17 @@ class WarehouseDetails extends Component {
                       quantity={item.quantity}
                       id={item.id}
                       key={item.id}
+                      showDeleteModal={this.showDeleteModal}
                     />
                 )})
               }
           </ul>
+          <DeleteInventory
+            show={this.state.show}
+            hideDeleteModal={this.hideDeleteModal}
+            deleteInventory={this.deleteInventory}
+            inventoryName={this.state.toDelete.name}
+          />
           </>
         ) : (
           <h2 className="loading-message">Loading Data</h2>

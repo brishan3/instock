@@ -4,7 +4,7 @@ import chevronIcon from '../../assets/icons/chevron_right-24px.svg'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import { Link } from 'react-router-dom'
 
-function WarehouseInvElement({itemName, category, status, quantity, id}) {
+function WarehouseInvElement({itemName, category, status, quantity, id, showDeleteModal}) {
   return (
     <li className="inventory-item body-medium">
       <div className="inventory-item__details">
@@ -48,7 +48,7 @@ function WarehouseInvElement({itemName, category, status, quantity, id}) {
           <p className="inventory-item__text">{quantity}</p>
         </div>
         <div className="inventory-item__column inventory-item__actions">
-          <button className="inventory-item__delete-button">
+          <button type="button" className="inventory-item__delete-button" onClick={() => {showDeleteModal(itemName, id)}}>
             <img
               className="inventory-item__action-icon"
               src={deleteIcon}
