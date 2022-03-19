@@ -2,12 +2,11 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.inventory {
+.search-header {
   padding: 1.5rem 1rem;
-  @include tablet{
+  @include tablet {
     @include flexed(row, space-between, center);
     padding: 2rem;
-
   }
 
   @include tablet {
@@ -33,14 +32,6 @@
     @include tablet {
       display: flex;
       gap: 1rem;
-    }
-  }
-}
-.searchHeader { 
-
-  &__interactive {
-    @include tablet{
-      @include flexed(row, flex-end, flex-start);
     }
   }
 }

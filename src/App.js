@@ -10,7 +10,7 @@ import EditWarehouse from "./components/EditWarehouse/EditWarehouse.jsx";
 import InventoryDetails from "./components/InventoryDetails/InventoryDetails";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
-import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
+// import DeleteWarehouse from "./components/DeleteWarehouse/DeleteWarehouse";
 
 function App() {
   return (
@@ -30,8 +30,8 @@ function App() {
               <Route path="/warehouses/add" exact component={AddWarehouse} />
               <Route path="/warehouses/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />
-              <Route path="/inventory/:id" exact component={InventoryDetails} />
               <Route path="/inventory/add" component={AddInven} />
+              <Route path="/inventory/:id" exact component={InventoryDetails} />
               <Route path="/inventory/edit/:id" component={EditInven} />
             </Switch>
           </div>

@@ -181,7 +181,7 @@
   }
 }
 
-.save-btn {
+.add-inventory {
   width: 45%;
   text-align: center;
   background-color: $interactive-color;
@@ -194,10 +194,10 @@
     border: 1px solid $navigation-color;
   }
   @include tablet {
-    width: 9%;
+    width: 13%;
   }
   @include desktop {
-    width: 7%;
+    width: 9%;
   }
 }
 
