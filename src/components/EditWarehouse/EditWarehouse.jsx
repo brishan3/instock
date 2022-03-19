@@ -28,13 +28,14 @@ class EditWarehouse extends React.Component {
     emailvalid: "",
     formvalid: true,
   };
+  // function gets id of the warehouse and send a get axios request
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
     // console.log(currentID);
     axios
       .get(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
       .then((res) => {
-        // console.log(res.data);
+        // if the axios request is successful the component is updated and data is updated in fields accordingly
         this.setState({
           id: res.data.id,
           whname: res.data.name,
@@ -80,7 +81,7 @@ class EditWarehouse extends React.Component {
         });
     }
   };
-
+//any input change is updated and field validation is called to check if input is in acceptable format
   handleChange = (event) => {
     this.setState(
       {
@@ -91,6 +92,7 @@ class EditWarehouse extends React.Component {
       }
     );
   };
+  //takes in field and its value to check if value is in acceptable format according to the field
   validateField(field, value) {
     let whnamevalidation = this.state.whnamevalid;
     let addressvalidation = this.state.addressvalid;
@@ -142,6 +144,7 @@ class EditWarehouse extends React.Component {
       default:
         break;
     }
+    //once the field input is validated the status is updated in state and function is called to validate form accordingly
     this.setState({
       whnamevalid: whnamevalidation,
       addressvalid: addressvalidation,
@@ -151,22 +154,30 @@ class EditWarehouse extends React.Component {
       positionvalid: positionvalidation,
       phonevalid: phonevalidation,
       emailvalid: emailvalidation,
-    });
+    }, this.validateForm);
   }
-
+    //checks if the form is valid after every changed in the field and updates the status
+    validateForm() {
+      this.setState({
+        formvalid: this.state.addressvalid &&
+        this.state.whnamevalid &&
+        this.state.cityvalid &&
+        this.state.countryvalid &&
+        this.state.namevalid &&
+        this.state.positionvalid &&
+        this.state.phonevalid &&
+        this.state.emailvalid
+      })
+    }
   showInputError(field, status) {
     if (!status) {
       field.classList.add("details__input--error");
       field.nextSibling.style.display = "block";
-      this.setState({
-        formvalid: false,
-      });
+
     } else {
       field.classList.remove("details__input--error");
       field.nextSibling.style.display = "none";
-      this.setState({
-        formvalid: true,
-      });
+
     }
   }
   componentDidMount() {

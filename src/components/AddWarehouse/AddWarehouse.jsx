@@ -27,45 +27,7 @@ class AddWarehouse extends React.Component {
     formvalid: false,
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.setState({
-      submit:true
-    })
-    console.log("button clicked");
-    console.log(this.state.formvalid);
-    if (this.state.formvalid) {
-      console.log(this.state.formvalid)
-      const newWarehouse = {
-        whname: this.state.whname,
-        address: this.state.address,
-        city: this.state.city,
-        country: this.state.country,
-        name: this.state.name,
-        position: this.state.position,
-        phone: this.state.phone,
-        email: this.state.email,
-      };
-      console.log("posting axios request")
-      const addWarehouse = axios.post(
-        `${process.env.REACT_APP_API_URL}/warehouses`,
-        newWarehouse
-      );
-      addWarehouse
-        .then((res) => {
-          window.alert(res.data);
-        })
-        .catch((err) => {
-          window.alert(err);
-        });
-    } else {
-      const inputlist = e.target.querySelectorAll("input")
-      inputlist.forEach((field) => {
-        this.validateField(field, field.value);
-      })
-    }
-  };
-
+// this tracks each field and adds to the state. Once the state is changed it checks if the input is valid
   handleChange = (event) => {
     this.setState(
       {
@@ -76,6 +38,7 @@ class AddWarehouse extends React.Component {
       }
     );
   };
+  //takes in field that has been changed and its values and checks if the value is valid according to the required format. Then it changes the state of of field validity accordingly. Once the field valididy status is updated it calls to confirm if the form is valid.
   validateField(field, value) {
     let whnamevalidation = this.state.whnamevalid;
     let addressvalidation = this.state.addressvalid;
@@ -86,7 +49,7 @@ class AddWarehouse extends React.Component {
     let phonevalidation = this.state.phonevalid;
     let emailvalidation = this.state.emailvalid;
     const re = /^[a-zA-Z]/;
-    const emailRe = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    const emailRe = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const addRe = /[A-za-z0–9_]/;
     const phoneRe = /^[0-9]{10}$/;
     switch (field.name) {
@@ -138,22 +101,24 @@ class AddWarehouse extends React.Component {
       emailvalid: emailvalidation,
     }, this.validateForm);
   }
+  //checks if the form is valid after every changed in the field and updates the status
   validateForm() {
     this.setState({
-      formvalid: this.isTrue(this.state.addressvalid) &&
-      this.isTrue(this.state.whnamevalid) &&
-      this.isTrue(this.state.cityvalid) &&
-      this.isTrue(this.state.countryvalid) &&
-      this.isTrue(this.state.namevalid) &&
-      this.isTrue(this.state.positionvalid) &&
-      this.isTrue(this.state.phonevalid) &&
-      this.isTrue(this.state.emailvalid)
+      formvalid: this.state.addressvalid &&
+      this.state.whnamevalid &&
+      this.state.cityvalid &&
+      this.state.countryvalid &&
+      this.state.namevalid &&
+      this.state.positionvalid &&
+      this.state.phonevalid &&
+      this.state.emailvalid
     })
-    console.log(this.state.formvalid)
   }
+  //checks if the fieldValid state is true
   isTrue(fieldValid){
     return fieldValid === true
   }
+  //takes in field and validity of the field to render error
   showInputError(field, status) {
     if (!status) {
       field.classList.add("details__input--error");
@@ -164,7 +129,44 @@ class AddWarehouse extends React.Component {
       field.nextSibling.style.display = "none";
     }
   }
-
+  //form submission event handler
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({
+      submit:true
+    })
+    //if form is valid it will take form field information and send post axios request 
+    if (this.state.formvalid) {
+      const newWarehouse = {
+        whname: this.state.whname,
+        address: this.state.address,
+        city: this.state.city,
+        country: this.state.country,
+        name: this.state.name,
+        position: this.state.position,
+        phone: this.state.phone,
+        email: this.state.email,
+      };
+      const addWarehouse = axios.post(
+        `${process.env.REACT_APP_API_URL}/warehouses`,
+        newWarehouse
+      );
+      addWarehouse
+        .then((res) => {
+          window.alert(res.data);
+          this.props.history.push("/warehouses")
+        })
+        .catch((err) => {
+          window.alert(err);
+        });
+    //it will check every field and validate it
+    } else {
+      const inputlist = e.target.querySelectorAll("input")
+      inputlist.forEach((field) => {
+        this.validateField(field, field.value);
+      })
+    }
+  };
   render() {
     return (
       <div className="box-shadow">
@@ -318,6 +320,7 @@ class AddWarehouse extends React.Component {
             type="submit"
             form="warehouse-form"
             className="save-btn"
+            id ="add-warehouse"
           >
             +Add Warehouse
           </button>
