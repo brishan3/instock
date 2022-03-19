@@ -119,6 +119,18 @@ class EditInven extends React.Component {
         .then((response) => {
           this.setState({ isSubmitted: true });
           e.target.reset();
+          window.alert(response.data);
+          this.props.history.push("/inventory");
+          nameField.classList.remove("details__input--error");
+          nameField.nextSibling.style.display = "none";
+          descField.classList.remove("details__input--error");
+          descField.nextSibling.style.display = "none";
+          categoryField.classList.remove("details__input--error");
+          categoryField.nextSibling.style.display = "none";
+          quantityField.classList.remove("details__input--error");
+          quantityField.nextSibling.style.display = "none";
+          warehouseField.classList.remove("details__input--error");
+          warehouseField.nextSibling.style.display = "none";
         })
         .catch((err) => console.log(err));
     }
