@@ -25,7 +25,7 @@ class Inventory extends Component {
   }
 
   //Function to get all inventories from the API
-  getAllInventories() {
+  getAllInventories = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URL}/inventory`)
       .then((response) => {
@@ -36,11 +36,10 @@ class Inventory extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   //Function to delete a single inventory
-  deleteInventory() {
-    console.log(this.state.toDelete);
+  deleteInventory = () => {
     let currentId = this.state.toDelete.id;
     return axios
       .delete(`${process.env.REACT_APP_API_URL}/inventory/${currentId}`)
@@ -54,7 +53,7 @@ class Inventory extends Component {
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   render() {
     return (
