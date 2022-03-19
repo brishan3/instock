@@ -56,12 +56,13 @@
         }
     }
 }
-#add-btn {
+.save-btn {
     width: 45%;
+    height: 100px;
     @include tablet {
         width: 8.625rem;
     }
     
 }
-  }
+
 }
