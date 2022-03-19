@@ -82,7 +82,7 @@ class Warehouses extends Component {
     render () {
         return (
             <>
-                <SearchHeader title="Warehouses" content="+ add new warehouse"/>
+                <SearchHeader title="Warehouses" content="+ add new warehouse" link="warehouses"/>
                 <WarehouseList 
                     warehouses={this.state.warehouses}
                     showDeleteModal={this.showDeleteModal} 
@@ -92,7 +92,7 @@ class Warehouses extends Component {
                     hideDeleteModal={this.hideDeleteModal}
                     deleteWarehouse={this.deleteWarehouse}
                     warehouseName={this.state.toDelete.name}
-                     //warehouseID={this.state.toDelete.id}
+                    //warehouseID={this.state.toDelete.id}
                 /> 
             </>
         );
