@@ -18,21 +18,20 @@ class EditWarehouse extends React.Component {
     position: "",
     phone: "",
     email: "",
-    whnamevalid: "",
-    addressvalid: "",
-    cityvalid: "",
-    countryvalid: "",
-    namevalid: "",
-    positionvalid: "",
-    phonevalid: "",
-    emailvalid: "",
+    whnamevalid: true,
+    addressvalid: true,
+    cityvalid: true,
+    countryvalid: true,
+    namevalid: true,
+    positionvalid: true,
+    phonevalid: true,
+    emailvalid: true,
     formvalid: true,
   };
 
   // function gets id of the warehouse and send a get axios request
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
-    // console.log(currentID);
     axios
       .get(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
       .then((res) => {
@@ -68,7 +67,7 @@ class EditWarehouse extends React.Component {
         phone: this.state.phone,
         email: this.state.email,
       };
-
+      
       const updateWarehouse = axios.put(
         `${process.env.REACT_APP_API_URL}/warehouses/${currentID}`,
         updatedData

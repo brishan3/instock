@@ -64,6 +64,7 @@ class EditInven extends React.Component {
 
   saveHandler = (e) => {
     e.preventDefault();
+    
     const nameField = e.target.itemname;
     const descField = e.target.description;
     const categoryField = e.target.category;
@@ -74,7 +75,7 @@ class EditInven extends React.Component {
       e.target.itemname.value === "" ||
       e.target.description.value === "" ||
       e.target.category.value === "Select" ||
-      e.target.quantity.value === "0" ||
+      (e.target.quantity && e.target.quantity.value === "0")||
       e.target.warehouse.value === "Select"
     ) {
       this.setState({ error: true });
