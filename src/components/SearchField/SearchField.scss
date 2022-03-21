@@ -43,4 +43,10 @@
       outline: none;
     }
   }
+  
+  &__wh {
+    @include tablet{
+      width:40%; 
+    }
+  }
 }

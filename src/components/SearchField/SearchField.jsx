@@ -3,7 +3,7 @@ import "./SearchField.scss";
 
 function SearchField() {
   return (
-    <div className="search">
+    <div className="search search__wh">
       <div className="search__text">
         <input
           className="search__input"

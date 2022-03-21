@@ -33,5 +33,10 @@
       display: flex;
       gap: 1rem;
     }
+    &--warehouses {
+      @include tablet{
+        gap:3rem;
+      }
+    }
   }
 }

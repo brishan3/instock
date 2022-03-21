@@ -11,8 +11,8 @@ function WarehouseList({ warehouses, showDeleteModal }) {
   return (    
       <div className="wrapper">
           <div className="column-labels">
-            <div className="column-labels__left">
-              <div className="column-labels__column column-labels__item1">
+            <div className="column-labels__left column-labels__left--wh">
+              <div className="column-labels__column column-labels__wh">
                 <h4 className="column-labels__text">Warehouse</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
@@ -25,12 +25,12 @@ function WarehouseList({ warehouses, showDeleteModal }) {
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
             </div>
-            <div className="column-labels__right">
+            <div className="column-labels__right column-labels__right--wh">
               <div className="column-labels__column column-labels__contactInformation">
                 <h4 className="column-labels__text">Contact Information</h4>
                 <img className="column-labels__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__actions">
+              <div className="column-labels__column column-labels__actions column-labels__actions--wh">
                 <h4 className="column-labels__text">Actions</h4>
               </div>
             </div>

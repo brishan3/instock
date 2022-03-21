@@ -7,18 +7,20 @@
   border-bottom: 1px solid $outline-divider-color;
   @include tablet {
     @include flexed(row, space-between, center);
+    padding:1rem 2rem;
   }
   &__details {
     @include flexed(row, space-between, flex-start);
     @include tablet {
-      width: 70%;
-      @include flexed(row, space-between, center);
+      width: 59%;
+      @include flexed(row, center, center);
+      gap:5.75rem;
     }
     &--right {
       width: 100%;
       @include tablet {
         @include flexed(row, space-between, center);
-        width: 30%;
+        width: 50%;
       }
     }
   }
@@ -30,7 +32,8 @@
     &--left {
       @include tablet {
         @include flexed(row, space-between, center);
-        width: 60%;
+        width: 45%;
+        gap:3.5rem;
       }
     }
     &--right {
