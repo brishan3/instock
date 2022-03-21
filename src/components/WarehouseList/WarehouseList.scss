@@ -12,12 +12,16 @@
     }
 }
 
-.column-labels {
+.column-labelsWH {
   display: none;
   padding: 1rem 1.5rem;
   background-color: $page-background-color;
   @include tablet {
     @include flexed(row, space-between, center);
+    padding: 1rem 2rem;
+  }
+  @include desktop {
+    padding: 1rem 2.5rem;
   }
 
   &__left {
@@ -25,7 +29,12 @@
     @include flexed(row, space-between, center);
     &--wh{
       @include tablet{
-        width: 59%;
+        width: 63%;
+        margin-right:0.5rem;
+      }
+      @include desktop {
+        width:70%;
+        margin-right:0rem;
       }
     }
   }
@@ -36,6 +45,9 @@
     &--wh {
       @include tablet {
         width:50%;
+      }
+      @include desktop {
+        width:30%;
       }
     }
   }
@@ -50,22 +62,28 @@
 
   &__address {
     @include tablet{
-      width: 15%;
+      width: 26%;
       //padding-left:1.5rem;
+    }
+    @include desktop {
+      width:43%;
     }
   }
 
   &__contactName {
     @include tablet {
     width: 33%;
-    padding-left:1rem;
+    //padding-left:1rem;
     //margin-right:3rem;
+    }
+    @include desktop {
+      width:37%;
     }
   }
 
   &__contactInformation {
     width:82%;
-    padding-left:1rem;
+    //padding-left:2rem;
   }
 
   &__actions {
@@ -80,10 +98,16 @@
   &__text {
     text-transform: uppercase;
     color: $table-placeholders-color;
+    &--contName {
+      padding-left:2.75rem;
+    }
   }
 
   &__sort-icon {
     height: 15px;
+    @include desktop {
+      padding-left:0.5rem;
+    }
   }
 }
 

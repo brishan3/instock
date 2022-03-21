@@ -24,9 +24,12 @@
     background-color: $navigation-color;
   }
   &--wh {
-    @include tablet{
+    @include tablet {
       width:60%;
       height: 2.375rem;
+    }
+    @include desktop {
+      width:33%;
     }
   }
 }
