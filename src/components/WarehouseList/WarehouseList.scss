@@ -99,7 +99,10 @@
     text-transform: uppercase;
     color: $table-placeholders-color;
     &--contName {
-      padding-left:2.75rem;
+      @include desktop {
+        padding-left:2.75rem;
+      }
+      
     }
   }
 
