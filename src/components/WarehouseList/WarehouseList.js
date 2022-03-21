@@ -6,28 +6,28 @@ import WarehouseElement from "../WarehouseElement/WarehouseElement";
 function WarehouseList({ warehouses, showDeleteModal }) {
   return (    
       <div className="wrapper">
-          <div className="column-labels">
-            <div className="column-labels__left">
-              <div className="column-labels__column column-labels__item1">
-                <h4 className="column-labels__text">Warehouse</h4>
-                <img className="column-labels__sort-icon" src={sortIcon}/>
+          <div className="column-labelsWH">
+            <div className="column-labelsWH__left column-labelsWH__left--wh">
+              <div className="column-labelsWH__column column-labelsWH__wh">
+                <h4 className="column-labelsWH__text">Warehouse</h4>
+                <img className="column-labelsWH__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__address">
-                <h4 className="column-labels__text">Address</h4>
-                <img className="column-labels__sort-icon" src={sortIcon}/>
+              <div className="column-labelsWH__column column-labelsWH__address">
+                <h4 className="column-labelsWH__text">Address</h4>
+                <img className="column-labelsWH__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__contactName">
-                <h4 className="column-labels__text">Contact Name</h4>
-                <img className="column-labels__sort-icon" src={sortIcon}/>
+              <div className="column-labelsWH__column column-labelsWH__contactName">
+                <h4 className="column-labelsWH__text column-labelsWH__text--contName">Contact Name</h4>
+                <img className="column-labelsWH__sort-icon" src={sortIcon}/>
               </div>
             </div>
-            <div className="column-labels__right">
-              <div className="column-labels__column column-labels__contactInformation">
-                <h4 className="column-labels__text">Contact Information</h4>
-                <img className="column-labels__sort-icon" src={sortIcon}/>
+            <div className="column-labelsWH__right column-labelsWH__right--wh">
+              <div className="column-labelsWH__column column-labelsWH__contactInformation">
+                <h4 className="column-labelsWH__text">Contact Information</h4>
+                <img className="column-labelsWH__sort-icon" src={sortIcon}/>
               </div>
-              <div className="column-labels__column column-labels__actions">
-                <h4 className="column-labels__text">Actions</h4>
+              <div className="column-labelsWH__column column-labelsWH__actions column-labelsWH__actions--wh">
+                <h4 className="column-labelsWH__text">Actions</h4>
               </div>
             </div>
           </div>

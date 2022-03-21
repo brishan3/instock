@@ -33,5 +33,14 @@
       display: flex;
       gap: 1rem;
     }
+    &--warehouses {
+      @include tablet{
+        gap:3rem;
+      }
+      @include desktop {
+        justify-content: flex-end;
+        gap:5rem;
+      }
+    }
   }
 }
