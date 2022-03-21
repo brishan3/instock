@@ -1,14 +1,9 @@
 import { Component } from 'react';
 import axios from 'axios';
 import './Warehouses.scss';
-// import ReactDOM from 'react-dom';
 import WarehouseList from '../../components/WarehouseList/WarehouseList';
 import SearchHeader from '../../components/SearchHeader/SearchHeader';
 import DeleteWarehouse from '../../components/DeleteWarehouse/DeleteWarehouse';
-
-// import SearchField from '../../components/SearchField/SearchField';
-// import MainButton from '../../components/MainButton/MainButton';
-// import WarehousesTable from '../../components/WarehousesTable/WarehousesTable';
 
 
 class Warehouses extends Component {
@@ -16,8 +11,6 @@ class Warehouses extends Component {
         warehouses: [],
         show:false,
         toDelete:{}
-
-
     };
 
     showDeleteModal = (name, id) => {
@@ -46,20 +39,6 @@ class Warehouses extends Component {
                 console.log(error);
             })
     }
-    //if (response.status === 200) above? 
-    // %% EARLIER ATTEMPT //%%
-    // deleteWarehouse = (id) => {
-    //     const newWarehouseList = this.state.warehouse.filter((warehouse) => {
-    //         return warehouse.id !== id
-    //     });
-    //     axios.delete(`${process.env.REACT_APP_API_URL}/warehouses/${id}`)
-    //     .then((response) => {
-    //         this.setState( { 
-    //             warehouse:response.data
-    //         })
-    //     })
-    // }
-
 
     //fetching API data and setting state when it mounts for the first time
     componentDidMount() {
@@ -92,7 +71,6 @@ class Warehouses extends Component {
                     hideDeleteModal={this.hideDeleteModal}
                     deleteWarehouse={this.deleteWarehouse}
                     warehouseName={this.state.toDelete.name}
-                    //warehouseID={this.state.toDelete.id}
                 /> 
             </>
         );

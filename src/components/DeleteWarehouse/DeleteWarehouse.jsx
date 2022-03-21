@@ -1,7 +1,5 @@
 import './DeleteWarehouse.scss';
-import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
 
 class DeleteWarehouse extends React.Component {
 
@@ -34,5 +32,4 @@ class DeleteWarehouse extends React.Component {
 
 export default DeleteWarehouse;
 
-{/* <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse(this.props.warehouseID)}></button> */}
 

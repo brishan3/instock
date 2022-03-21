@@ -8,7 +8,10 @@ import backIcon from '../../assets/icons/arrow_back-24px.svg';
 import WarehouseInvElement from '../WarehouseInvElement/WarehouseInvElement';
 import DeleteInventory from '../DeleteInventory/DeleteInventory';
 
-
+//
+// Renders the WarehouseDetails component, responsible for displaying a singular warehouses' 
+// details (by ID in the URL params), as well as all current inventory for that warehouse.
+//
 class WarehouseDetails extends Component {
   state = {
     warehouse: {},
@@ -17,24 +20,25 @@ class WarehouseDetails extends Component {
     toDelete: {},
   }
 
+  // Displays the delete modal component and queue an item for delete in state -
+  // passed down to the delete button in each inventory item card
   showDeleteModal = (name, id) => {
     this.setState({ show: true, toDelete: { name: name, id: id } });
   };
 
+  // Clears the InventoryDelete modal from the screen -
+  // passed down as to modal component's "Cancel" button
   hideDeleteModal = () => {
     this.setState({ show: false, toDelete: {} });
   };
 
-  //Function to delete a single inventory
+  // Deletes a single inventory item from the API via an items ID queued in state
   deleteInventory = () => {
-    let currentId = this.state.toDelete.id;
+    let itemID = this.state.toDelete.id;
     return axios
-      .delete(`${process.env.REACT_APP_API_URL}/inventory/${currentId}`)
-      .then((response) => {
-        this.setState({
-          toDelete: {},
-          show: false,
-        });
+      .delete(`${process.env.REACT_APP_API_URL}/inventory/${itemID}`)
+      .then(() => {
+        this.hideDeleteModal();
         this.getInventoryByWarehouseId();
       })
       .catch((error) => {
@@ -42,10 +46,12 @@ class WarehouseDetails extends Component {
       });
   };
 
+  // Function to fetch a list of inventory items specific to a single Warehouse, 
+  // indicated by ID
   getInventoryByWarehouseId = () => {
-    let currentID = this.props.match.params.id;
+    let warehouseID = this.props.match.params.id;
     axios
-      .get(`${process.env.REACT_APP_API_URL}/inventory/warehouse/${currentID}`)
+      .get(`${process.env.REACT_APP_API_URL}/inventory/warehouse/${warehouseID}`)
       .then( (res) => {
         this.setState(
           {
@@ -58,6 +64,7 @@ class WarehouseDetails extends Component {
       })
   }
 
+  // Function to fetch a single Warehouse's details via an ID in the URL params
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
     axios
@@ -75,6 +82,7 @@ class WarehouseDetails extends Component {
       })
   }
 
+  // Upon mounting, call getWarehouseById to fetch all required details to display component
   componentDidMount = () => {
     this.getWarehouseById();
   }

@@ -4,6 +4,9 @@ import chevronIcon from '../../assets/icons/chevron_right-24px.svg'
 import deleteIcon from '../../assets/icons/delete_outline-24px.svg'
 import { Link } from 'react-router-dom'
 
+//
+// Renders a single, responsive inventory item card for the WarehouseDetails component
+//
 function WarehouseInvElement({itemName, category, status, quantity, id, showDeleteModal}) {
   return (
     <li className="inventory-item body-medium">
