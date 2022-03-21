@@ -1,11 +1,7 @@
 import "./WarehouseList.scss";
-
 import sortIcon from '../../assets/icons/sort-24px.svg';
-
-
 import WarehouseElement from "../WarehouseElement/WarehouseElement";
-//import { v4 as uuid } from "uuid";
-// add import statement for editWarehouse page/components that will be made 
+
 
 function WarehouseList({ warehouses, showDeleteModal }) {
   return (    

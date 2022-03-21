@@ -1,10 +1,7 @@
-import "./DeleteWarehouse.scss";
-import axios from "axios";
-import React from "react";
-import { Link } from "react-router-dom";
-import ReactModal from "react-modal";
+import './DeleteWarehouse.scss';
+import { Component } from "react";
 
-class DeleteWarehouse extends React.Component {
+class DeleteWarehouse extends Component {
   render() {
     const showHideClassName = this.props.show
       ? "delete-warehouse__container delete-warehouse__container--block"
@@ -50,6 +47,3 @@ class DeleteWarehouse extends React.Component {
 
 export default DeleteWarehouse;
 
-{
-  /* <button type="button" className='delete-btn' onClick={this.props.deleteWarehouse(this.props.warehouseID)}></button> */
-}

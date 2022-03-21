@@ -28,6 +28,7 @@ class EditWarehouse extends React.Component {
     emailvalid: "",
     formvalid: true,
   };
+
   // function gets id of the warehouse and send a get axios request
   getWarehouseById = () => {
     let currentID = this.props.match.params.id;
@@ -52,6 +53,7 @@ class EditWarehouse extends React.Component {
         console.log(result);
       });
   };
+
   handleSubmit = (e) => {
     e.preventDefault();
     let currentID = this.props.match.params.id;
@@ -81,7 +83,8 @@ class EditWarehouse extends React.Component {
         });
     }
   };
-//any input change is updated and field validation is called to check if input is in acceptable format
+
+  //any input change is updated and field validation is called to check if input is in acceptable format
   handleChange = (event) => {
     this.setState(
       {
