@@ -140,7 +140,7 @@ class WarehouseDetails extends Component {
                 <h4 className="column-labels__text">Quantity</h4>
                 <img className="column-labels__sort-icon" src={sortIcon} alt="sort-by icon"/>
               </div>
-              <div className="column-labels__column column-labels__actions">
+              <div className="column-labels__column">
                 <h4 className="column-labels__text">Actions</h4>
               </div>
             </div>

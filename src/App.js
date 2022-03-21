@@ -8,7 +8,7 @@ import Footer from "./components/Footer/Footer";
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse.jsx";
 import EditWarehouse from "./components/EditWarehouse/EditWarehouse.jsx";
 import InventoryDetails from "./components/InventoryDetails/InventoryDetails";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import WarehouseDetails from "./components/WarehouseDetails/WarehouseDetails";
 
 function App() {
@@ -19,13 +19,9 @@ function App() {
         <article className="page-container">
           <div className="page-container__inner">
             <Switch>
-              <Route path="/" component={Warehouses} exact />
+              <Redirect path="/" to="/warehouses" exact />
               <Route path="/warehouses" exact component={Warehouses} />
-              <Route
-                path="/warehouses/edit/:id"
-                exact
-                component={EditWarehouse}
-              />
+              <Route path="/warehouses/edit/:id" exact component={EditWarehouse} />
               <Route path="/warehouses/add" exact component={AddWarehouse} />
               <Route path="/warehouses/:id" component={WarehouseDetails} />
               <Route path="/inventory" exact component={Inventory} />

@@ -40,7 +40,7 @@ function WarehouseInvElement({itemName, category, status, quantity, id, showDele
               >{status}</h4>
           </div>
           <div className="inventory-item__column inventory-item__quantity">
-            <h4 className="inventory-item__label">Quantity</h4>
+            <h4 className="inventory-item__label">Qty</h4>
             <p className="inventory-item__text">{quantity}</p>
           </div>
         </div>

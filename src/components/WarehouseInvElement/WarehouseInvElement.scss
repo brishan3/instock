@@ -72,15 +72,18 @@
   }
   &__actions {
     width: 100%;
+    margin-bottom: 0;
     @include flexed(row, space-between, center);
     @include tablet {
       width: unset;
+      gap: 1rem;
     }
   }
   &__delete-button {
     border: none;
     background: none;
     cursor: pointer;
+    padding: 0;
   }
   &__text {
     &-block {
