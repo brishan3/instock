@@ -269,17 +269,9 @@ class AddInven extends React.Component {
                 >
                   <option value="Select">Select</option>
                   {this.state.warehouses.map((warehouse) => (
-                    <option value={warehouse.name}>{warehouse.name}</option>
+                    <option key={warehouse.id} value={warehouse.name}>{warehouse.name}</option>
                   ))}
-
-                  {/* <option value="Manhattan">Manhattan</option>
-                  <option value="Washington">Washington</option>
-                  <option value="Jersey">Jersey</option>
-                  <option value="San Fran">San Fran</option>
-                  <option value="Santa Monica">Santa Monica</option>
-                  <option value="Seattle">Seattle</option>
-                  <option value="Miami">Miami</option>
-                  <option value="Boston">Boston</option> */}
+                  
                 </select>
                 <p className="details__err">
                   <img className="details__err--img" src={error} alt="error" />{" "}
