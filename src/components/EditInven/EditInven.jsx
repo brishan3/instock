@@ -11,7 +11,22 @@ class EditInven extends React.Component {
     status: "Out of Stock",
     inventory: {},
     loading: true,
+    warehouses: []
   };
+
+  //Function to get the list of warehouses
+  getAllWarehouses() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/warehouses`)
+      .then((response) => {
+        this.setState({
+          warehouses: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   onChangeHandler = (e) => {
     this.setState({
@@ -58,6 +73,7 @@ class EditInven extends React.Component {
         loading: false,
         status: foundInventory.status,
       });
+      this.getAllWarehouses();
     });
   }
 
@@ -289,15 +305,10 @@ class EditInven extends React.Component {
                   onChange={this.onChangeWarehouse}
                   value={this.state.inventory.warehouseName}
                 >
-                  <option value="Select">Select</option>
-                  <option value="Manhattan">Manhattan</option>
-                  <option value="Washington">Washington</option>
-                  <option value="Jersey">Jersey</option>
-                  <option value="San Fran">San Fran</option>
-                  <option value="Santa Monica">Santa Monica</option>
-                  <option value="Seattle">Seattle</option>
-                  <option value="Miami">Miami</option>
-                  <option value="Boston">Boston</option>
+                  {this.state.warehouses.map((warehouse) => (
+                    <option key={warehouse.id} value={warehouse.name}>{warehouse.name}</option>
+                  ))}
+
                 </select>
                 <p className="details__err">
                   <img className="details__err--img" src={error} alt="error" />{" "}

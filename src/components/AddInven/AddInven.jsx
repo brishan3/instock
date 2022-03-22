@@ -10,7 +10,26 @@ class AddInven extends React.Component {
     isSubmitted: false,
     error: false,
     status: "In Stock",
+    warehouses: [], //create warehouse empty array
   };
+
+  componentDidMount() {
+    this.getAllWarehouses();
+  }
+
+  //Function to get the list of warehouses
+  getAllWarehouses() {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/warehouses`)
+      .then((response) => {
+        this.setState({
+          warehouses: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   onChangeHandler = (e) => {
     this.setState({
@@ -32,7 +51,10 @@ class AddInven extends React.Component {
       e.target.description.value === "" ||
       e.target.category.value === "Select" ||
       e.target.warehouse.value === "Select" ||
-      ((e.target.quantity.value === "0" || e.target.quantity.value === "" || isNaN(parseInt(e.target.quantity.value))) && e.target.status.value === "In Stock")
+      ((e.target.quantity.value === "0" ||
+        e.target.quantity.value === "" ||
+        isNaN(parseInt(e.target.quantity.value))) &&
+        e.target.status.value === "In Stock")
     ) {
       this.setState({ error: true });
       if (e.target.itemname.value === "") {
@@ -47,7 +69,11 @@ class AddInven extends React.Component {
         categoryField.classList.add("details__input--error");
         categoryField.nextSibling.style.display = "block";
       }
-      if (e.target.quantity.value === "" || e.target.quantity.value === "0"  || isNaN(parseInt(e.target.quantity.value)) ) {
+      if (
+        e.target.quantity.value === "" ||
+        e.target.quantity.value === "0" ||
+        isNaN(parseInt(e.target.quantity.value))
+      ) {
         quantityField.classList.add("details__input--error");
         quantityField.nextSibling.style.display = "block";
       }
@@ -59,8 +85,11 @@ class AddInven extends React.Component {
     // Validated
     else {
       let incomingQuantity = e.target.quantity.value;
-      
-      if ((incomingQuantity !== "0" || incomingQuantity !== "") && e.target.status.value === "Out of Stock") {
+
+      if (
+        (incomingQuantity !== "0" || incomingQuantity !== "") &&
+        e.target.status.value === "Out of Stock"
+      ) {
         incomingQuantity = 0;
       }
 
@@ -239,14 +268,10 @@ class AddInven extends React.Component {
                   className="warehouse__select"
                 >
                   <option value="Select">Select</option>
-                  <option value="Manhattan">Manhattan</option>
-                  <option value="Washington">Washington</option>
-                  <option value="Jersey">Jersey</option>
-                  <option value="San Fran">San Fran</option>
-                  <option value="Santa Monica">Santa Monica</option>
-                  <option value="Seattle">Seattle</option>
-                  <option value="Miami">Miami</option>
-                  <option value="Boston">Boston</option>
+                  {this.state.warehouses.map((warehouse) => (
+                    <option key={warehouse.id} value={warehouse.name}>{warehouse.name}</option>
+                  ))}
+                  
                 </select>
                 <p className="details__err">
                   <img className="details__err--img" src={error} alt="error" />{" "}
