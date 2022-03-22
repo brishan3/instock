@@ -23,12 +23,10 @@ class Warehouses extends Component {
     };
 
     deleteWarehouse = () => {
-        console.log(this.state.toDelete);
         let currentID = this.state.toDelete.id;
         axios
             .delete(`${process.env.REACT_APP_API_URL}/warehouses/${currentID}`)
             .then((response) => {
-                console.log(response.data);
                 this.setState({
                     warehouses: response.data,
                     toDelete:{},

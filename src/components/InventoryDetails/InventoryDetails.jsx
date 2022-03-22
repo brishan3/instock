@@ -17,12 +17,9 @@ class InventoryDetails extends Component {
   //Function to get a single inventory from the API
   getInventoryById = () => {
     let currentID = this.props.match.params.id;
-    console.log(currentID);
     axios
       .get(`${process.env.REACT_APP_API_URL}/inventory/${currentID}`)
       .then((response) => {
-        console.log(response);
-
         this.setState({
           inventory: response.data,
         });

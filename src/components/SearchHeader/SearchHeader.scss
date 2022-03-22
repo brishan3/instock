@@ -35,11 +35,20 @@
     }
     &--warehouses {
       @include tablet{
-        gap:3rem;
+        gap:2.8rem;
       }
       @include desktop {
         justify-content: flex-end;
         gap:5rem;
+      }
+    }
+    &--inventory {
+      @include tablet{
+        gap:3.5rem;
+      }
+      @include desktop {
+        justify-content: flex-end;
+        gap:5.75rem;
       }
     }
   }

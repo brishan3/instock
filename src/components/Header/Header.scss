@@ -14,9 +14,11 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 2rem 2rem 6rem 2rem;
+    max-width: 63.375rem;
+    margin: 0 auto;
   }
   @include desktop {
-    padding: 2rem 8.125rem 6rem 8.125rem;
+    padding: 2rem 0rem 6rem 0rem;
   }
   &__list {
     list-style: none;
@@ -41,10 +43,11 @@
     }
     @include tablet {
       font-size: 0.875rem;
-      width: 20%;
+      min-width: 7.185rem;
+      width: 15%;
     }
     @include desktop {
-      width: 12%;
+      width: 15%;
     }
     &--highlight {
       background-color: $global-text-color;

@@ -20,6 +20,7 @@ class AddInven extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
+
     const nameField = e.target.itemname;
     const descField = e.target.description;
     const categoryField = e.target.category;
@@ -30,8 +31,8 @@ class AddInven extends React.Component {
       e.target.itemname.value === "" ||
       e.target.description.value === "" ||
       e.target.category.value === "Select" ||
-      e.target.quantity.value === "0" ||
-      e.target.warehouse.value === "Select"
+      e.target.warehouse.value === "Select" ||
+      ((e.target.quantity.value === "0" || e.target.quantity.value === "" || isNaN(parseInt(e.target.quantity.value))) && e.target.status.value === "In Stock")
     ) {
       this.setState({ error: true });
       if (e.target.itemname.value === "") {
@@ -46,7 +47,7 @@ class AddInven extends React.Component {
         categoryField.classList.add("details__input--error");
         categoryField.nextSibling.style.display = "block";
       }
-      if (e.target.quantity.value === "") {
+      if (e.target.quantity.value === "" || e.target.quantity.value === "0"  || isNaN(parseInt(e.target.quantity.value)) ) {
         quantityField.classList.add("details__input--error");
         quantityField.nextSibling.style.display = "block";
       }
@@ -57,6 +58,12 @@ class AddInven extends React.Component {
     }
     // Validated
     else {
+      let incomingQuantity = e.target.quantity.value;
+      
+      if ((incomingQuantity !== "0" || incomingQuantity !== "") && e.target.status.value === "Out of Stock") {
+        incomingQuantity = 0;
+      }
+
       // Grab the warehouseID for later use
       axios
         .get(`${process.env.REACT_APP_API_URL}/warehouses`)
@@ -73,7 +80,7 @@ class AddInven extends React.Component {
             description: e.target.description.value,
             category: e.target.category.value,
             status: e.target.status.value,
-            quantity: e.target.quantity.value || 0,
+            quantity: incomingQuantity,
           };
           // Post the object to the server
           axios
