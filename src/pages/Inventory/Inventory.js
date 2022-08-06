@@ -9,7 +9,7 @@ class Inventory extends Component {
   state = {
     inventories: [],
     show: false,
-    toDelete: {},
+    toDelete: {}
   };
 
   showDeleteModal = (name, id) => {
