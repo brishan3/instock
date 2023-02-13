@@ -50,19 +50,19 @@ PORT = 8080
 ## Usage
 To run this project locally, follow these steps:
 
-Clone the server repository
+Clone the server/API repository
 ##### `$ git clone https://github.com/brishan3/instock-api.git`
 
-Install server dependencies
+Install server/API dependencies
 ##### `$ npm install`
 
 Start the server
 ##### `$ npm run dev`
 
-Clone the server repository
+Clone the client repository
 ##### `$ git clone https://github.com/brishan3/instock.git`
 
-Install server dependencies
+Install client dependencies
 ##### `$ npm install`
 
 Start the client
